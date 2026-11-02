@@ -3,6 +3,7 @@ import os
 from flask import Flask
 
 import auth
+import documents
 from db import init_db
 
 app = Flask(__name__)
@@ -14,6 +15,7 @@ app.config.update(
     MAX_CONTENT_LENGTH=10 * 1024 * 1024,
 )
 app.register_blueprint(auth.bp)
+app.register_blueprint(documents.bp)
 
 init_db()
 auth.seed_users()
