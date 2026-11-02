@@ -1,8 +1,22 @@
+import os
+
 from flask import Flask
+
+import auth
 from db import init_db
 
 app = Flask(__name__)
+app.secret_key = os.environ["SECRET_KEY"]
+app.config.update(
+    SESSION_COOKIE_HTTPONLY=True,
+    SESSION_COOKIE_SAMESITE="Lax",
+    SESSION_COOKIE_SECURE=bool(os.environ.get("RENDER")),
+    MAX_CONTENT_LENGTH=10 * 1024 * 1024,
+)
+app.register_blueprint(auth.bp)
+
 init_db()
+auth.seed_users()
 
 
 @app.route("/")
