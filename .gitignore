@@ -3,3 +3,5 @@ __pycache__/
 *.db
 .env
 uploads/
+cookies.txt
+.pytest_cache/
