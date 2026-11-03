@@ -15,4 +15,4 @@ PROMPTS log
 - **Asked:** pytest tests proving one user cannot reach another user's documents
 - **Produced:** tests/test_access.py (12 tests)
 - **What was wrong:** Passing tests do not prove they test anything. I commented out the can() check in download and re-ran: 6 tests failed (other owner, viewer without grant, admin, revoke, deleted doc, audit of denied attempts), so the tests really guard the check.
-- **What I did:** restored the check, 12 pass again. Commit: (link after push)
+- **What I did:** restored the check, 12 pass again. Commit: [1bb6679](https://github.com/vennelapemula/snovasys-hiring-challenge-2026/commit/1bb6679)
