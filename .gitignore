@@ -5,3 +5,5 @@ __pycache__/
 uploads/
 cookies.txt
 .pytest_cache/
+test.txt
+downloaded.txt
