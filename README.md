@@ -33,10 +33,20 @@ Every upload, download, delete, grant, revoke and refused attempt is appended to
 - Each row stores a SHA-256 hash of the previous hash plus its own fields (including time). `GET /admin/audit/verify` recomputes the chain.
 
 ## Run locally
-
+```
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+$env:SECRET_KEY="any-long-random-string"
+flask --app app run
+```
 Open http://127.0.0.1:5000. Local demo password: LocalDemo-123.
 
 ## Tests
+```
+python -m pytest -v
+```
+
 
 ## Deploy (Render)
 Build: `pip install -r requirements.txt`. Start: `gunicorn app:app`.
@@ -52,11 +62,11 @@ SQLite. `init_db()` in `db.py` creates users, documents, grants and audit_log at
 | POST /logout, GET /me | logged in |
 | POST /documents | owner, admin |
 | GET /documents (?q, category, owner, since) | logged in; only own or granted documents |
-| GET /documents/<id>/download | owner, or live read/edit grant |
-| DELETE /documents/<id> | owner only |
-| GET /documents/<id>/grants | owner only |
-| POST /documents/<id>/grants | owner only |
-| DELETE /documents/<id>/grants/<username> | owner only |
+| GET /documents/{id}/download | owner, or live read/edit grant |
+| DELETE /documents/{id} | owner only |
+| GET /documents/{id}/grants | owner only |
+| POST /documents/{id}/grants | owner only |
+| DELETE /documents/{id}/grants/{username} | owner only |
 | GET /admin/audit, /admin/audit/verify, /admin/flagged | admin only |
 
 ## Honest limits
