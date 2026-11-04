@@ -1,7 +1,7 @@
 import os
 
 from flask import Flask
-
+import admin
 import auth
 import documents
 from db import init_db
@@ -16,6 +16,7 @@ app.config.update(
 )
 app.register_blueprint(auth.bp)
 app.register_blueprint(documents.bp)
+app.register_blueprint(admin.bp)
 
 init_db()
 auth.seed_users()
