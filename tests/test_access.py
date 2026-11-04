@@ -151,3 +151,25 @@ def test_audit_log_cannot_be_edited_or_deleted():
     with pytest.raises(Exception):
         conn.execute("DELETE FROM audit_log")
     conn.close()
+def test_admin_pages_are_admin_only(clients):
+    assert clients["owner1"].get("/admin/audit").status_code == 403
+    assert clients["viewer1"].get("/admin/audit/verify").status_code == 403
+    assert clients["admin1"].get("/admin/audit").status_code == 200
+
+
+def test_viewer_sees_only_seeded_shared_doc(clients):
+    names = [d["name"] for d in clients["viewer1"].get("/documents").get_json()]
+    assert "salary-letter.txt" in names
+    assert "contract-acme.txt" not in names
+
+
+def test_audit_chain_detects_tampering(clients):
+    import audit
+    upload(clients["owner1"])
+    assert audit.verify()["ok"] is True
+    conn = db.get_db()
+    conn.execute("DROP TRIGGER audit_no_update")  # attacker with DB file access
+    conn.execute("UPDATE audit_log SET action = 'x' WHERE id = 1")
+    conn.commit()
+    conn.close()
+    assert audit.verify()["ok"] is False
