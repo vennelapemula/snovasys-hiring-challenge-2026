@@ -1,6 +1,7 @@
 import os
 
-from flask import Flask
+from flask import Flask, request
+
 import admin
 import auth
 import documents
@@ -24,6 +25,18 @@ auth.seed_users()
 seed.seed_documents()
 
 
+@app.after_request
+def security_headers(resp):
+    resp.headers["X-Content-Type-Options"] = "nosniff"
+    resp.headers["X-Frame-Options"] = "DENY"
+    resp.headers["Content-Security-Policy"] = (
+        "default-src 'self'; style-src 'self' 'unsafe-inline'; frame-ancestors 'none'"
+    )
+    if not request.path.startswith("/static"):
+        resp.headers["Cache-Control"] = "no-store"
+    return resp
+
+
 @app.route("/")
 def home():
-    return "TrustVault is running"
+    return app.send_static_file("index.html")

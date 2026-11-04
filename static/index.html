@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TrustVault</title>
+<style>
+body{font-family:system-ui,sans-serif;max-width:900px;margin:auto;padding:12px}
+input,button{font-size:1rem;margin:2px;padding:6px}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%}
+th,td{border:1px solid #ccc;padding:4px 6px;text-align:left;font-size:.9rem}
+#msg{color:#b00020;min-height:1.2em}
+</style>
+</head>
+<body>
+<h1>TrustVault</h1>
+<p id="msg" role="status"></p>
+
+<section id="loginBox">
+  <input id="u" placeholder="username" autocomplete="username">
+  <input id="p" type="password" placeholder="password" autocomplete="current-password">
+  <button id="loginBtn">Login</button>
+</section>
+
+<section id="appBox" hidden>
+  <p>Signed in as <b id="who"></b> <button id="logoutBtn">Logout</button></p>
+
+  <h2>Upload</h2>
+  <input id="file" type="file">
+  <input id="upcat" placeholder="category">
+  <button id="upBtn">Upload</button>
+
+  <h2>Documents</h2>
+  <input id="q" placeholder="name">
+  <input id="cat" placeholder="category">
+  <input id="own" placeholder="owner">
+  <input id="since" type="date">
+  <button id="searchBtn">Search</button>
+  <div id="docs" class="scroll"></div>
+  <div id="grants" class="scroll"></div>
+
+  <section id="adminBox" hidden>
+    <h2>Admin: activity</h2>
+    <button data-p="/admin/audit">All activity</button>
+    <button data-p="/admin/audit?result=denied">Refused only</button>
+    <button data-p="/admin/audit?kind=permissions">Permission changes</button>
+    <button data-p="/admin/flagged">Flagged users</button>
+    <button data-p="/admin/audit/verify">Verify audit chain</button>
+    <div id="adminOut" class="scroll"></div>
+  </section>
+</section>
+<script src="/static/app.js"></script>
+</body>
+</html>

@@ -188,3 +188,18 @@ def delete(doc_id):
     conn.close()
     audit.log(g.user["id"], "delete", doc_id, "ok")
     return jsonify(message="deleted")
+@bp.get("/documents/<int:doc_id>/grants")
+@login_required
+def list_grants(doc_id):
+    if not can(g.user, doc_id, "share"):
+        audit.log(g.user["id"], "list_grants", doc_id, "denied")
+        return _not_found()
+    conn = get_db()
+    rows = conn.execute(
+        "SELECT u.username, gr.level, gr.granted_at FROM grants gr "
+        "JOIN users u ON u.id = gr.user_id "
+        "WHERE gr.doc_id = ? AND gr.revoked_at IS NULL",
+        (doc_id,),
+    ).fetchall()
+    conn.close()
+    return jsonify([dict(r) for r in rows])
