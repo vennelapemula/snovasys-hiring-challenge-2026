@@ -4,6 +4,7 @@ from flask import Flask
 import admin
 import auth
 import documents
+import seed
 from db import init_db
 
 app = Flask(__name__)
@@ -20,6 +21,7 @@ app.register_blueprint(admin.bp)
 
 init_db()
 auth.seed_users()
+seed.seed_documents()
 
 
 @app.route("/")
