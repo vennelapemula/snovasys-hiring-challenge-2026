@@ -16,3 +16,9 @@ PROMPTS log
 - **Produced:** tests/test_access.py (12 tests)
 - **What was wrong:** Passing tests do not prove they test anything. I commented out the can() check in download and re-ran: 6 tests failed (other owner, viewer without grant, admin, revoke, deleted doc, audit of denied attempts), so the tests really guard the check.
 - **What I did:** restored the check, 12 pass again. Commit: [1bb6679](https://github.com/vennelapemula/snovasys-hiring-challenge-2026/commit/1bb6679)
+
+## Entry 4: 4 Nov 2026
+- **Asked:** hash-chained audit log, admin view, seed documents and a web UI
+- **Produced:** audit.py (time in hash, verify), admin.py, seed.py, static UI
+- **What was wrong:** the AI changed the audit hash format but did not warn that my old local trustvault.db would break; /login returned 500 and the Access button showed "not allowed". It also showed an upload box to viewers who cannot upload.
+- **What I did:** stopped the server, deleted the old trustvault.db, restarted clean; login and Access worked. Commit: [abc1234](https://github.com/vennelapemula/snovasys-hiring-challenge-2026/commit/abc1234)
