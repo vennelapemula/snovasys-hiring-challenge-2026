@@ -21,10 +21,10 @@ PROMPTS log
 - **Asked:** hash-chained audit log, admin view, seed documents and a web UI
 - **Produced:** audit.py (time in hash, verify), admin.py, seed.py, static UI
 - **What was wrong:** the AI changed the audit hash format but did not warn that my old local trustvault.db would break; /login returned 500 and the Access button showed "not allowed". It also showed an upload box to viewers who cannot upload.
-- **What I did:** stopped the server, deleted the old trustvault.db, restarted clean; login and Access worked. Commit: [abc1234](https://github.com/vennelapemula/snovasys-hiring-challenge-2026/commit/abc1234)
+- **What I did:** stopped the server, deleted the old trustvault.db, restarted clean; login and Access worked. Commit: [554f237](https://github.com/vennelapemula/snovasys-hiring-challenge-2026/commit/554f237)
 
 ## Entry 5: 4 Nov 2026
 - **Asked:** can() permission function, upload/download/grant/revoke routes, and audit log
 - **Produced:** permissions.py, documents.py, audit.py (first version)
 - **What was wrong:** (1) The first audit hash did not include the time, so a changed timestamp would not break the chain. (2) The AI noted a race condition between audit writes but only fixed it later. (3) The AI said "edit" was an owner right but built no edit route, so the edit grant level did nothing at first.
-- **What I did:** I caught (1) while reading audit.py, added time to the hash and a verify() function, then wrote test_audit_chain_detects_tampering. For (2) I added BEGIN IMMEDIATE. For (3) I listed it as not built in README and THREATS.md. I also proved the download check matters: removing it made 6 tests fail. Commit: [PASTE_NUMBER](https://github.com/vennelapemula/snovasys-hiring-challenge-2026/commit/PASTE_NUMBER)
+- **What I did:** I caught (1) while reading audit.py, added time to the hash and a verify() function, then wrote test_audit_chain_detects_tampering. For (2) I added BEGIN IMMEDIATE. For (3) I listed it as not built in README and THREATS.md. I also proved the download check matters: removing it made 6 tests fail. Commit: [a6feff3](https://github.com/vennelapemula/snovasys-hiring-challenge-2026/commit/a6feff3)
