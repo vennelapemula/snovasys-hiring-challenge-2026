@@ -8,9 +8,9 @@ Live: https://trustvault-vennela.onrender.com
 ## Demo accounts (live site)
 | Role | Username | Password |
 |---|---|---|
-| Admin | admin1 | <TV-DEMO-2026-19> |
-| Owner | owner1 | <TV-DEMO-2026-19> |
-| Viewer | viewer1 | <TV-DEMO-2026-19> |
+| Admin | admin1 | TV-DEMO-2026-19 |
+| Owner | owner1 | TV-DEMO-2026-19 |
+| Viewer | viewer1 | TV-DEMO-2026-19 |
 
 owner2 also exists so tests can prove one owner cannot read another owner's file.
 
