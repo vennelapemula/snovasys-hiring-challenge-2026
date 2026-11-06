@@ -28,3 +28,9 @@ PROMPTS log
 - **Produced:** permissions.py, documents.py, audit.py (first version)
 - **What was wrong:** (1) The first audit hash did not include the time, so a changed timestamp would not break the chain. (2) The AI noted a race condition between audit writes but only fixed it later. (3) The AI said "edit" was an owner right but built no edit route, so the edit grant level did nothing at first.
 - **What I did:** I caught (1) while reading audit.py, added time to the hash and a verify() function, then wrote test_audit_chain_detects_tampering. For (2) I added BEGIN IMMEDIATE. For (3) I listed it as not built in README and THREATS.md. I also proved the download check matters: removing it made 6 tests fail. Commit: [a6feff3](https://github.com/vennelapemula/snovasys-hiring-challenge-2026/commit/a6feff3)
+
+## Entry 6: 6 Nov 2026
+- **Asked:** hide the upload box from viewers in the UI
+- **Produced:** a uploadBox div and a line in app.js
+- **What was wrong:** the opening div tag ended up after the Upload button, so it swallowed the Documents section and the viewer page showed only Upload. The server already blocked viewer uploads with 403, so this was a UI bug only.
+- **What I did:** moved the tags around the Upload section and added a null check in app.js. Commit: [NUMBER](https://github.com/vennelapemula/snovasys-hiring-challenge-2026/commit/NUMBER)
