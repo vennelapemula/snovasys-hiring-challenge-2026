@@ -33,4 +33,4 @@ PROMPTS log
 - **Asked:** hide the upload box from viewers in the UI
 - **Produced:** a uploadBox div and a line in app.js
 - **What was wrong:** the opening div tag ended up after the Upload button, so it swallowed the Documents section and the viewer page showed only Upload. The server already blocked viewer uploads with 403, so this was a UI bug only.
-- **What I did:** moved the tags around the Upload section and added a null check in app.js. Commit: [NUMBER](https://github.com/vennelapemula/snovasys-hiring-challenge-2026/commit/NUMBER)
+- **What I did:** moved the tags around the Upload section and added a null check in app.js. Commit: [67f832a](https://github.com/vennelapemula/snovasys-hiring-challenge-2026/commit/67f832a)
