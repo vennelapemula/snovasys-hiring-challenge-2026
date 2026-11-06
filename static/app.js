@@ -37,8 +37,6 @@ function table(box, cols, rows) {
 }
 
 async function start() {
-  const ub = $("uploadBox");
-if (ub) ub.hidden = me.role === "viewer";
   const r = await api("/me");
   if (!r.ok) {
     $("loginBox").hidden = false;
