@@ -42,12 +42,14 @@ async function start() {
     $("loginBox").hidden = false;
     $("appBox").hidden = true;
     return;
+    msg("");
   }
   me = r.data;
   $("loginBox").hidden = true;
   $("appBox").hidden = false;
   $("who").textContent = me.username + " (" + me.role + ")";
   $("adminBox").hidden = me.role !== "admin";
+  $("uploadBox").hidden = me.role === "viewer";
   loadDocs();
 }
 
