@@ -49,7 +49,7 @@ function table(box, cols, rows) {
   $("appBox").hidden = false;
   $("who").textContent = me.username + " (" + me.role + ")";
   $("adminBox").hidden = me.role !== "admin";
-  $("uploadBox").hidden = me.role === "viewer";
+  //$("uploadBox").hidden = me.role === "viewer";
   loadDocs();
 
 
