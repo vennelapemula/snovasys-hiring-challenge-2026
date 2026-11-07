@@ -39,8 +39,9 @@ function table(box, cols, rows) {
   if (!r.ok) {
     $("loginBox").hidden = false;
     $("appBox").hidden = true;
-    msg("");
+    
     return;
+    msg("");
   }
   
   me = r.data;
