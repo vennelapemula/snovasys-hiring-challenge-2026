@@ -36,22 +36,21 @@ function table(box, cols, rows) {
   box.appendChild(t);
 }
 
-async function start() {
-  const r = await api("/me");
   if (!r.ok) {
     $("loginBox").hidden = false;
     $("appBox").hidden = true;
-    return;
     msg("");
+    return;
   }
+  
   me = r.data;
   $("loginBox").hidden = true;
   $("appBox").hidden = false;
   $("who").textContent = me.username + " (" + me.role + ")";
   $("adminBox").hidden = me.role !== "admin";
-  $("uploadBox").hidden = me.role === "viewer";
+  //$("uploadBox").hidden = me.role === "viewer";
   loadDocs();
-}
+
 
 $("loginBtn").onclick = async () => {
   const r = await api("/login", {
