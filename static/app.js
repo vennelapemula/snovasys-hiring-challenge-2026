@@ -38,7 +38,6 @@ function table(box, cols, rows) {
 
 async function start() {
   const r = await api("/me");
-
   if (!r.ok) {
     $("loginBox").hidden = false;
     $("appBox").hidden = true;
