@@ -1,377 +1,535 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TrustVault - Secure Document Management</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrustVault | Secure Document Management</title>
 
-<style>
-  :root {
-  --primary: #7540A8;
-  --dark: #352044;
-  --purple: #9064BD;
-  --lavender: #F1EAF8;
-  --white: #FFFFFF;
-  --gold: #D6B46A;
-  --text: #352044;
-  --border: #E5D9F0;
-}
+  <style>
+    :root {
+      --purple-dark: #352044;
+      --purple: #7540A8;
+      --purple-light: #9064BD;
+      --lavender: #F1EAF8;
+      --gold: #D6B46A;
+      --white: #FFFFFF;
+      --text: #352044;
+      --muted: #766982;
+      --border: #E5D9F0;
+      --shadow: 0 8px 28px rgba(53, 32, 68, 0.10);
+    }
 
-* {
-  box-sizing: border-box;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-[hidden] {
-  display: none !important;
-}
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: linear-gradient(135deg, #F8F5FB, #EEE5F6);
+    }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: "Segoe UI", Arial, sans-serif;
-  color: var(--text);
-  background: #F8F5FC;
-}
+    button, input, select {
+      font: inherit;
+    }
 
-/* LOGIN PAGE */
-#loginBox {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 30px 18px;
-  text-align: center;
-  background: linear-gradient(135deg, #352044, #7540A8, #B69ACF);
-}
+    button {
+      border: none;
+      cursor: pointer;
+      border-radius: 9px;
+      padding: 11px 18px;
+      font-weight: 600;
+      transition: 0.2s;
+    }
 
-#loginBox:before {
-  content: "♙";
-  display: grid;
-  place-items: center;
-  width: 82px;
-  height: 82px;
-  margin-bottom: 20px;
-  border-radius: 25px;
-  color: white;
-  font-size: 40px;
-  background: var(--gold);
-}
+    button:hover {
+      transform: translateY(-1px);
+      opacity: 0.92;
+    }
 
-#loginBox:after {
-  content: "TRUSTVAULT";
-  color: white;
-  font-size: 25px;
-  font-weight: 800;
-  letter-spacing: 3px;
-  margin-bottom: 15px;
-}
+    .main-header {
+      background: var(--purple-dark);
+      color: var(--white);
+      padding: 19px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      border-bottom: 4px solid var(--gold);
+    }
 
-#loginBox input {
-  width: min(100%, 390px);
-  margin: 9px auto;
-  padding: 14px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: white;
-  font-size: 15px;
-  outline: none;
-}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
 
-#loginBox input:focus {
-  border-color: var(--gold);
-  box-shadow: 0 0 0 3px #D6B46A35;
-}
+    .brand-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      background: var(--gold);
+      font-size: 25px;
+    }
 
-/* BUTTONS */
-button {
-  padding: 11px 18px;
-  border: 0;
-  border-radius: 9px;
-  background: var(--primary);
-  color: white;
-  font-weight: 700;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
+    .brand-text h1 {
+      margin: 0;
+      font-size: 29px;
+      letter-spacing: 0.5px;
+      color: var(--white);
+    }
 
-button:hover {
-  background: var(--dark);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 14px #35204430;
-}
+    .brand-text p {
+      margin: 5px 0 0;
+      color: #E8DDF1;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+    }
 
-#loginBtn {
-  width: min(100%, 390px);
-  margin-top: 12px;
-  padding: 14px;
-  background: var(--gold);
-  color: var(--dark);
-  font-size: 16px;
-}
+    .user-area {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
 
-#loginBtn:hover {
-  background: #E5CA91;
-}
+    #who {
+      color: #F4EAFB;
+      font-weight: 600;
+    }
 
-/* DASHBOARD HEADER */
-#appBox {
-  min-height: 100vh;
-}
+    #logoutBtn {
+      background: var(--gold);
+      color: var(--purple-dark);
+    }
 
-#appBox > p:first-child {
-  margin: 0;
-  padding: 20px 4%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 15px;
-  color: white;
-  background: linear-gradient(100deg, #352044, #7540A8);
-  box-shadow: 0 4px 16px #35204425;
-}
+    .page-container {
+      width: min(1150px, 92%);
+      margin: 30px auto;
+    }
 
-#who {
-  color: white;
-}
+    #msg {
+      margin: 12px 0;
+      color: var(--purple-dark);
+      font-weight: 600;
+      text-align: center;
+    }
 
-#logoutBtn {
-  background: var(--gold);
-  color: var(--dark);
-}
+    .panel {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 24px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow);
+    }
 
-/* DASHBOARD SECTIONS */
-#uploadBox,
-#docs,
-#grants,
-#adminBox {
-  width: min(1120px, calc(100% - 32px));
-  margin: 22px auto;
-  padding: 22px;
-  border: 1px solid var(--border);
-  border-radius: 15px;
-  background: white;
-  box-shadow: 0 5px 20px #3520440c;
-}
+    .panel h2 {
+      margin: 0 0 18px;
+      color: var(--purple-dark);
+      font-size: 21px;
+    }
 
-#appBox > h2 {
-  width: min(1120px, calc(100% - 32px));
-  margin: 28px auto 16px;
-  color: var(--dark);
-  font-size: 23px;
-}
+    .panel h3 {
+      color: var(--purple);
+    }
 
-#uploadBox h2,
-#adminBox h2 {
-  color: var(--primary);
-}
+    #loginBox {
+      max-width: 430px;
+      margin: 65px auto;
+    }
 
-/* SEARCH INPUTS */
-#appBox > #q,
-#appBox > #cat,
-#appBox > #own,
-#appBox > #since {
-  padding: 11px;
-  margin: 5px;
-  border: 1px solid var(--border);
-  border-radius: 9px;
-  background: white;
-  color: var(--dark);
-}
+    .login-description {
+      color: var(--muted);
+      line-height: 1.6;
+      margin-top: -8px;
+      margin-bottom: 20px;
+    }
 
-#appBox > #q {
-  margin-left: max(16px, calc((100% - 1120px)/2));
-}
+    .field {
+      margin-bottom: 16px;
+    }
 
-#searchBtn {
-  background: var(--gold);
-  color: var(--dark);
-}
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: 600;
+      color: var(--purple-dark);
+      font-size: 14px;
+    }
 
-/* TABLE DESIGN */
-.scroll {
-  overflow-x: auto;
-}
+    input, select {
+      width: 100%;
+      padding: 12px 13px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: #FFFEFF;
+      color: var(--text);
+      outline: none;
+    }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: white;
-}
+    input:focus, select:focus {
+      border-color: var(--purple);
+      box-shadow: 0 0 0 3px rgba(117, 64, 168, 0.12);
+    }
 
-th {
-  background: var(--lavender);
-  color: var(--dark);
-  font-weight: 700;
-}
+    .primary-btn {
+      background: var(--purple);
+      color: var(--white);
+    }
 
-th, td {
-  padding: 13px;
-  border: 1px solid var(--border);
-  text-align: left;
-  font-size: 14px;
-}
+    .gold-btn {
+      background: var(--gold);
+      color: var(--purple-dark);
+    }
 
-tr:hover td {
-  background: #FAF7FD;
-}
+    .danger-btn {
+      background: #FCE8E8;
+      color: #A52A2A;
+    }
 
-a {
-  color: var(--primary);
-  font-weight: 600;
-}
+    .secondary-btn {
+      background: var(--lavender);
+      color: var(--purple-dark);
+    }
 
-/* MESSAGE */
-#msg {
-  color: #A16207;
-  min-height: 1.2em;
-  padding: 8px 15px;
-}
+    .full-width {
+      width: 100%;
+    }
 
-/* MOBILE RESPONSIVE */
-@media (max-width: 650px) {
-  #appBox > p:first-child {
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
+    .toolbar {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(140px, 1fr)) auto;
+      gap: 12px;
+      align-items: end;
+    }
 
-  #uploadBox,
-  #docs,
-  #grants,
-  #adminBox {
-    padding: 14px;
-  }
+    .toolbar .field {
+      margin: 0;
+    }
 
-  #appBox > #q,
-  #appBox > #cat,
-  #appBox > #own,
-  #appBox > #since,
-  #searchBtn {
-    display: block;
-    width: calc(100% - 32px);
-    margin: 9px auto;
-  }
+    .toolbar button {
+      height: 43px;
+    }
 
-  #upcat {
-    width: 100%;
-    margin-top: 8px;
-  }
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
 
-  #upBtn {
-    width: 100%;
-    margin-top: 8px;
-  }
-}
+    #docs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+      gap: 16px;
+    }
 
-</style>
+    #docs > * {
+      min-width: 0;
+    }
+
+    .document-card {
+      background: #FCFAFE;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 17px;
+      overflow-wrap: anywhere;
+    }
+
+    .document-card h3 {
+      margin: 0 0 10px;
+      color: var(--purple-dark);
+    }
+
+    .document-card p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .document-card button {
+      margin: 5px 5px 0 0;
+    }
+
+    #grants, #adminOut {
+      overflow-x: auto;
+      line-height: 1.7;
+    }
+
+    .admin-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .empty-message {
+      color: var(--muted);
+      text-align: center;
+      padding: 25px;
+      background: #FCFAFE;
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+    }
+
+    .gold-line {
+      width: 55px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 5px;
+      margin: -9px 0 20px;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 20px;
+      font-size: 13px;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    @media (max-width: 800px) {
+      .toolbar {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 520px) {
+      .main-header {
+        padding: 17px 5%;
+      }
+
+      .brand-text h1 {
+        font-size: 24px;
+      }
+
+      .page-container {
+        width: 94%;
+        margin: 18px auto;
+      }
+
+      .panel {
+        padding: 17px;
+      }
+
+      .toolbar {
+        grid-template-columns: 1fr;
+      }
+
+      .user-area {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<p id="msg" role="status" aria-live="polite"></p>
+  <header class="main-header">
+    <div class="brand">
+      <div class="brand-icon">🛡️</div>
+      <div class="brand-text">
+        <h1>TrustVault</h1>
+        <p>Secure Document Management</p>
+      </div>
+    </div>
 
-<!-- LOGIN PAGE -->
+    <div class="user-area" id="userArea" hidden>
+      <span id="who"></span>
+      <button id="logoutBtn">Logout</button>
+    </div>
+  </header>
 
-<section id="loginBox">
+  <main class="page-container">
 
-  <input
-    id="u"
-    placeholder="Enter username"
-    autocomplete="username"
-  >
+    <p id="msg" role="status" aria-live="polite"></p>
 
-  <input
-    id="p"
-    type="password"
-    placeholder="Enter password"
-    autocomplete="current-password"
-  >
+    <!-- LOGIN -->
+    <section id="loginBox" class="panel">
+      <h2>Welcome Back</h2>
+      <div class="gold-line"></div>
+      <p class="login-description">
+        Login to securely manage, upload and share your documents.
+      </p>
 
-  <button id="loginBtn">Login to TrustVault →</button>
+      <div class="field">
+        <label for="u">Username</label>
+        <input id="u" type="text" placeholder="Enter username"
+               autocomplete="username">
+      </div>
 
-</section>
+      <div class="field">
+        <label for="p">Password</label>
+        <input id="p" type="password" placeholder="Enter password"
+               autocomplete="current-password">
+      </div>
 
-<!-- DASHBOARD -->
+      <button id="loginBtn" class="primary-btn full-width">
+        Login Securely
+      </button>
+    </section>
 
-<section id="appBox" hidden>
+    <!-- APPLICATION -->
+    <section id="appBox" hidden>
 
-  <p>
-    Signed in as <b id="who"></b>
-    <button id="logoutBtn">Logout</button>
-  </p>
+      <!-- UPLOAD -->
+      <section id="uploadBox" class="panel" hidden>
+        <h2>Upload Document</h2>
+        <div class="gold-line"></div>
 
-  <!-- UPLOAD -->
+        <div class="field">
+          <label for="file">Choose Document</label>
+          <input id="file" type="file">
+        </div>
 
-  <div id="uploadBox">
+        <div class="field">
+          <label for="upcat">Document Category</label>
+          <select id="upcat">
+            <option value="">Select Category</option>
+            <option value="Personal">Personal</option>
+            <option value="Education">Education</option>
+            <option value="Finance">Finance</option>
+            <option value="Business">Business</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
 
-    <h2>📁 Upload Documents</h2>
+        <button id="upBtn" class="primary-btn">
+          Upload Document
+        </button>
+      </section>
 
-    <input id="file" type="file">
+      <!-- SEARCH -->
+      <section class="panel">
+        <h2>Find Your Documents</h2>
+        <div class="gold-line"></div>
 
-    <input
-      id="upcat"
-      placeholder="Enter document category"
-    >
+        <div class="toolbar">
+          <div class="field">
+            <label for="q">Search</label>
+            <input id="q" type="text" placeholder="Search documents">
+          </div>
 
-    <button id="upBtn">⬆ Upload Document</button>
+          <div class="field">
+            <label for="cat">Category</label>
+            <select id="cat">
+              <option value="">All Categories</option>
+              <option value="Personal">Personal</option>
+              <option value="Education">Education</option>
+              <option value="Finance">Finance</option>
+              <option value="Business">Business</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
 
-  </div>
+          <div class="field">
+            <label for="own">Owner</label>
+            <input id="own" type="text" placeholder="Owner name">
+          </div>
 
-  <!-- DOCUMENTS -->
+          <div class="field">
+            <label for="since">From Date</label>
+            <input id="since" type="date">
+          </div>
 
-  <h2>📂 My Documents</h2>
+          <button id="searchBtn" class="primary-btn">
+            Search
+          </button>
+        </div>
+      </section>
 
-  <input id="q" placeholder="Search by name">
+      <!-- DOCUMENT LIST -->
+      <section class="panel">
+        <div class="section-title">
+          <h2>My Documents</h2>
+        </div>
+        <div class="gold-line"></div>
 
-  <input id="cat" placeholder="Category">
+        <div id="docs">
+          <div class="empty-message">Your documents will appear here.</div>
+        </div>
+      </section>
 
-  <input id="own" placeholder="Owner">
+      <!-- SHARING DETAILS -->
+      <section class="panel">
+        <h2>Document Access & Sharing</h2>
+        <div class="gold-line"></div>
 
-  <input id="since" type="date">
+        <div id="grants">
+          <div class="empty-message">
+            Select a document's Access option to view sharing details.
+          </div>
+        </div>
+      </section>
 
-  <button id="searchBtn">🔍 Search</button>
+      <!-- ADMIN -->
+      <section id="adminBox" class="panel" hidden>
+        <h2>Admin Dashboard</h2>
+        <div class="gold-line"></div>
 
-  <div id="docs" class="scroll"></div>
+        <div class="admin-buttons">
+          <button id="auditBtn" class="primary-btn">
+            View Audit Logs
+          </button>
 
-  <!-- ACCESS MANAGEMENT -->
+          <button id="deniedBtn" class="secondary-btn">
+            Denied Activities
+          </button>
 
-  <div id="grants" class="scroll"></div>
+          <button id="permissionsBtn" class="secondary-btn">
+            Permission Changes
+          </button>
 
-  <!-- ADMIN PANEL -->
+          <button id="flaggedBtn" class="gold-btn">
+            Flagged Documents
+          </button>
 
-  <section id="adminBox" hidden>
+          <button id="verifyBtn" class="secondary-btn">
+            Verify Audit
+          </button>
+        </div>
 
-    <h2>⚙ Admin Dashboard</h2>
+        <div id="adminOut" style="margin-top:20px;">
+          Admin reports will appear here.
+        </div>
+      </section>
 
-    <button data-p="/admin/audit">
-      📊 All Activity
-    </button>
+    </section>
+  </main>
 
-    <button data-p="/admin/audit?result=denied">
-      🚫 Refused Only
-    </button>
+  <footer>
+    TrustVault &copy; 2026 | Secure Document Management
+  </footer>
 
-    <button data-p="/admin/audit?kind=permissions">
-      🔑 Permission Changes
-    </button>
+  <script src="/static/app.js"></script>
 
-    <button data-p="/admin/flagged">
-      ⚠ Flagged Users
-    </button>
+  <script>
+    // Keep the user header hidden until the application is logged in.
+    const appBox = document.getElementById("appBox");
+    const userArea = document.getElementById("userArea");
+    const loginBox = document.getElementById("loginBox");
 
-    <button data-p="/admin/audit/verify">
-      ✔ Verify Audit Chain
-    </button>
+    const headerObserver = new MutationObserver(() => {
+      const loggedIn = !appBox.hidden;
+      userArea.hidden = !loggedIn;
+      loginBox.hidden = loggedIn;
+    });
 
-    <div id="adminOut" class="scroll"></div>
-
-  </section>
-
-</section>
-
-<!-- ORIGINAL JAVASCRIPT FILE -->
-
-<script src="/static/app.js"></script>
+    headerObserver.observe(appBox, {
+      attributes: true,
+      attributeFilter: ["hidden"]
+    });
+  </script>
 
 </body>
 </html>
