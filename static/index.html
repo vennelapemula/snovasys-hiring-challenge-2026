@@ -3,45 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TrustVault - Secure Document Management</title>
+<title>TrustVault | Secure Document Management</title>
 
 <style>
 :root {
-    --navy: #183247;
-    --navy2: #24465C;
-    --teal: #168C83;
-    --teal-dark: #10736C;
-    --cream: #F5F3EE;
+    --navy: #142D4E;
+    --navy-light: #203F62;
+    --teal: #0F9D91;
+    --teal-dark: #087C73;
+    --background: #F2F6FA;
     --white: #FFFFFF;
-    --text: #263746;
-    --muted: #71808D;
-    --border: #D9E2E7;
-    --red: #D9534F;
+    --text: #25364A;
+    --muted: #718096;
+    --border: #D9E2EC;
+    --red: #D94F52;
 }
 
 * {
     box-sizing: border-box;
 }
 
+[hidden] {
+    display: none !important;
+}
+
 body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: var(--cream);
+    background: var(--background);
     color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 /* HEADER */
 
 .main-header {
-    background: var(--navy);
+    background: linear-gradient(120deg, var(--navy), var(--navy-light));
     color: white;
-    padding: 19px 5%;
+    padding: 18px 5%;
+    border-bottom: 4px solid var(--teal);
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 15px;
     flex-wrap: wrap;
-    border-bottom: 4px solid var(--teal);
 }
 
 .brand {
@@ -53,92 +57,111 @@ body {
 .brand-icon {
     width: 48px;
     height: 48px;
+    border-radius: 12px;
     background: var(--teal);
-    color: white;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 12px;
     font-size: 25px;
 }
 
 .brand h1 {
+    font-size: 27px;
     margin: 0;
     color: white;
-    font-size: 27px;
 }
 
 .brand p {
     margin: 5px 0 0;
-    color: #C9D8E0;
+    color: #D7E6F0;
     font-size: 13px;
-}
-
-/* LOGIN USER AND LOGOUT */
-
-.account-area {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 13px;
-    flex-wrap: wrap;
-}
-
-#who {
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-#logoutBtn {
-    background: var(--red);
-    color: white;
-    border: 1px solid #BD3E3A;
-    border-radius: 8px;
-    padding: 11px 20px;
-    font-size: 14px;
-    font-weight: bold;
 }
 
 /* PAGE */
 
 .container {
     width: 92%;
-    max-width: 1150px;
+    max-width: 1200px;
     margin: 28px auto;
 }
 
 #msg {
-    color: #B53F3B;
+    min-height: 20px;
+    margin: 10px 0 15px;
+    color: #B33B42;
     font-weight: bold;
     text-align: center;
-    margin: 10px 0;
 }
 
 /* LOGIN */
 
-.login-card {
+#loginBox {
     max-width: 440px;
     margin: 55px auto;
-    padding: 30px;
+    padding: 32px;
     background: white;
     border: 1px solid var(--border);
-    border-radius: 15px;
-    box-shadow: 0 8px 28px rgba(24,50,71,.09);
+    border-radius: 16px;
+    box-shadow: 0 8px 28px rgba(20,45,78,.10);
 }
 
-.login-card h2 {
+#loginBox h2 {
     text-align: center;
     color: var(--navy);
-    margin: 0 0 8px;
+    margin-top: 0;
+    font-size: 25px;
 }
 
-.login-card .description {
-    text-align: center;
+.login-description {
     color: var(--muted);
-    font-size: 14px;
-    line-height: 1.5;
+    text-align: center;
     margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+/* ACCOUNT BAR */
+
+.account-bar {
+    background: white;
+    padding: 15px 20px;
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--teal);
+    border-radius: 11px;
+    margin-bottom: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+#who {
+    font-weight: bold;
+    color: var(--navy);
+    font-size: 15px;
+}
+
+/* WELCOME */
+
+.welcome {
+    background: linear-gradient(120deg, #142D4E, #285477);
+    color: white;
+    padding: 27px;
+    border-radius: 14px;
+    margin-bottom: 23px;
+    border-left: 5px solid var(--teal);
+}
+
+.welcome h2 {
+    color: white;
+    margin: 0 0 9px;
+    font-size: 24px;
+}
+
+.welcome p {
+    color: #DCE8F1;
+    line-height: 1.6;
+    margin: 0;
 }
 
 /* PANELS */
@@ -149,42 +172,19 @@ body {
     border-radius: 13px;
     padding: 23px;
     margin-bottom: 22px;
-    box-shadow: 0 5px 18px rgba(24,50,71,.05);
+    box-shadow: 0 5px 18px rgba(20,45,78,.05);
 }
 
 .panel h2 {
     color: var(--navy);
     font-size: 21px;
-    margin: 0 0 18px;
-    padding: 0 0 12px;
-    border-bottom: 2px solid var(--border);
+    margin: 0 0 20px;
+    padding: 0 0 12px 12px;
     border-left: 5px solid var(--teal);
-    padding-left: 12px;
+    border-bottom: 1px solid var(--border);
 }
 
-/* WELCOME */
-
-.welcome {
-    background: linear-gradient(120deg, var(--navy), var(--navy2));
-    color: white;
-    padding: 26px;
-    border-radius: 14px;
-    margin-bottom: 23px;
-    border-left: 5px solid var(--teal);
-}
-
-.welcome h2 {
-    margin: 0 0 9px;
-    font-size: 23px;
-}
-
-.welcome p {
-    color: #D8E4E9;
-    line-height: 1.6;
-    font-size: 14px;
-}
-
-/* INPUTS */
+/* FORM FIELDS */
 
 .field {
     margin-bottom: 17px;
@@ -193,35 +193,38 @@ body {
 label {
     display: block;
     margin-bottom: 8px;
-    font-size: 14px;
-    font-weight: bold;
     color: var(--navy);
+    font-weight: bold;
+    font-size: 14px;
 }
 
 input, select {
     width: 100%;
     padding: 12px 13px;
-    border: 1px solid #C7D3DA;
-    border-radius: 8px;
-    background: white;
+    background: #FFFFFF;
     color: var(--text);
-    font-size: 14px;
+    border: 1px solid #C7D3DF;
+    border-radius: 8px;
+    font-size: 15px;
     outline: none;
 }
 
 input:focus, select:focus {
     border-color: var(--teal);
-    box-shadow: 0 0 0 3px rgba(22,140,131,.12);
+    box-shadow: 0 0 0 3px rgba(15,157,145,.12);
 }
 
 /* BUTTONS */
 
 button {
-    cursor: pointer;
-    border-radius: 8px;
     padding: 11px 18px;
+    border-radius: 8px;
+    border: 1px solid var(--teal-dark);
+    background: var(--teal);
+    color: white;
     font-size: 14px;
     font-weight: bold;
+    cursor: pointer;
     transition: .2s;
 }
 
@@ -229,34 +232,41 @@ button:hover {
     filter: brightness(.92);
 }
 
+button:disabled {
+    opacity: .6;
+    cursor: wait;
+}
+
+/* LOGIN BUTTON */
+
 #loginBtn {
     width: 100%;
-    background: var(--navy);
-    color: white;
-    border: 1px solid var(--navy);
-    padding: 13px;
+    background: var(--navy) !important;
+    color: white !important;
+    border: 1px solid var(--navy) !important;
+    padding: 14px;
     font-size: 16px;
 }
 
+/* LOGOUT BUTTON */
+
+#logoutBtn {
+    background: var(--red) !important;
+    color: white !important;
+    border: 1px solid #B9383D !important;
+    padding: 11px 23px;
+    font-size: 14px;
+}
+
+/* UPLOAD AND SEARCH */
+
 #upBtn, #searchBtn {
-    background: var(--teal);
-    color: white;
-    border: 1px solid var(--teal-dark);
+    background: var(--teal) !important;
+    color: white !important;
+    border: 1px solid var(--teal-dark) !important;
 }
 
-.secondary-btn {
-    background: #E8F1F2;
-    color: var(--navy);
-    border: 1px solid #C6DADB;
-}
-
-.danger-btn {
-    background: #FCE9E8;
-    color: #A93632;
-    border: 1px solid #EBC2C0;
-}
-
-/* SEARCH */
+/* SEARCH LAYOUT */
 
 .search-grid {
     display: grid;
@@ -270,55 +280,97 @@ button:hover {
 }
 
 .search-grid button {
-    height: 43px;
+    min-height: 43px;
 }
 
 /* DOCUMENT TABLE */
 
-.table-wrap {
+#docs {
     width: 100%;
     overflow-x: auto;
-    border: 1px solid var(--border);
-    border-radius: 9px;
 }
 
-#docs table, #docs > table {
+#docs table,
+#adminOut table {
     width: 100%;
+    min-width: 680px;
     border-collapse: collapse;
     background: white;
-    min-width: 650px;
+    border: 1px solid var(--border);
 }
 
-#docs th, #docs table th {
-    background: var(--navy);
-    color: white;
-    padding: 13px 11px;
-    border: 1px solid #3C5A6D;
+#docs th,
+#adminOut th {
+    background: var(--navy) !important;
+    color: white !important;
+    border: 1px solid #38536D;
+    padding: 14px 11px;
     text-align: left;
     white-space: nowrap;
 }
 
-#docs td, #docs table td {
-    padding: 12px 11px;
+#docs td,
+#adminOut td {
     border: 1px solid var(--border);
+    padding: 12px 10px;
     color: var(--text);
 }
 
-#docs tr:nth-child(even) {
-    background: #F0F6F6;
+#docs tr:nth-child(even),
+#adminOut tr:nth-child(even) {
+    background: #F0F6F8;
 }
 
-#docs tr:hover {
-    background: #E4F2F0;
+#docs tr:hover,
+#adminOut tr:hover {
+    background: #E4F3F1;
 }
 
-#docs button {
+/* DOCUMENT ACTION BUTTONS */
+
+#docs td button,
+#grants button {
+    background: var(--teal) !important;
+    color: white !important;
+    border: 1px solid var(--teal-dark) !important;
     margin: 3px;
+    padding: 8px 12px;
+    font-size: 12px;
 }
 
-#docs a {
-    color: var(--teal-dark);
+#docs td button.tv-delete {
+    background: var(--red) !important;
+    border-color: #B9383D !important;
+}
+
+#docs td a {
+    display: inline-block;
+    background: #E4F3F1 !important;
+    color: #087C73 !important;
+    padding: 8px 10px;
+    border-radius: 7px;
+    text-decoration: none;
     font-weight: bold;
+}
+
+/* ACCESS */
+
+#grants {
+    padding: 15px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: #F8FAFC;
+    line-height: 1.8;
+}
+
+#grants p {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 9px;
 }
 
 /* ADMIN */
@@ -330,32 +382,45 @@ button:hover {
 }
 
 .admin-buttons button {
-    background: var(--navy);
-    color: white;
-    border: 1px solid var(--navy2);
+    background: var(--navy) !important;
+    color: white !important;
+    border: 1px solid var(--navy-light) !important;
 }
 
-#adminOut, #grants {
+#adminOut {
+    overflow-x: auto;
     margin-top: 18px;
     padding: 15px;
-    background: #F7FAFA;
     border: 1px solid var(--border);
     border-radius: 9px;
-    overflow-x: auto;
+    background: #F8FAFC;
+}
+
+/* EMPTY AND LOADING */
+
+.tv-empty {
+    padding: 25px;
+    text-align: center;
+    color: var(--muted);
+}
+
+.tv-loading {
+    opacity: .65;
+    pointer-events: none;
 }
 
 /* FOOTER */
 
 footer {
-    margin-top: 35px;
+    margin-top: 40px;
     background: var(--navy);
-    color: #D6E2E8;
+    color: #DCE8F1;
     padding: 19px;
     text-align: center;
     font-size: 13px;
 }
 
-/* RESPONSIVE */
+/* MOBILE */
 
 @media(max-width: 800px) {
     .search-grid {
@@ -372,11 +437,6 @@ footer {
         font-size: 23px;
     }
 
-    .account-area {
-        width: 100%;
-        justify-content: space-between;
-    }
-
     .container {
         width: 94%;
         margin: 18px auto;
@@ -386,9 +446,9 @@ footer {
         padding: 16px;
     }
 
-    .login-card {
+    #loginBox {
         margin: 30px auto;
-        padding: 22px;
+        padding: 23px;
     }
 
     .search-grid {
@@ -398,15 +458,18 @@ footer {
     .welcome {
         padding: 20px;
     }
+
+    .account-bar {
+        align-items: flex-start;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
+<!-- TOP HEADER -->
 <header class="main-header">
-
     <div class="brand">
         <div class="brand-icon">🛡️</div>
         <div>
@@ -414,60 +477,72 @@ footer {
             <p>Secure Document Management</p>
         </div>
     </div>
-
 </header>
 
 <main class="container">
 
+    <!-- STATUS MESSAGE -->
     <p id="msg" role="status" aria-live="polite"></p>
 
-    <!-- LOGIN -->
-    <section id="loginBox" class="login-card">
+    <!-- LOGIN PAGE -->
+    <section id="loginBox" hidden>
 
         <h2>Welcome Back</h2>
 
-        <p class="description">
-            Login to securely manage your documents.
+        <p class="login-description">
+            Login to your secure TrustVault account.
         </p>
 
         <div class="field">
             <label for="u">Username</label>
-            <input id="u" type="text"
-                   placeholder="Enter username"
-                   autocomplete="username">
+            <input
+                id="u"
+                type="text"
+                placeholder="Enter username"
+                autocomplete="username"
+            >
         </div>
 
         <div class="field">
             <label for="p">Password</label>
-            <input id="p" type="password"
-                   placeholder="Enter password"
-                   autocomplete="current-password">
+            <input
+                id="p"
+                type="password"
+                placeholder="Enter password"
+                autocomplete="current-password"
+            >
         </div>
 
-        <button id="loginBtn">Login Securely</button>
+        <button id="loginBtn" type="button">
+            Login to TrustVault →
+        </button>
 
     </section>
 
-    <!-- APPLICATION -->
-    <section id="appBox" style="display:none;">
+    <!-- LOGGED-IN APPLICATION -->
+    <section id="appBox" hidden>
 
-        <!-- ACCOUNT BAR: VISIBLE AFTER LOGIN -->
-        <section class="panel account-area">
+        <!-- USERNAME AND LOGOUT -->
+        <div class="account-bar">
 
-            <span id="who"></span>
+            <span>
+                Signed in as:
+                <strong id="who"></strong>
+            </span>
 
-            <button id="logoutBtn">
+            <button id="logoutBtn" type="button">
                 Logout
             </button>
 
-        </section>
+        </div>
 
         <!-- WELCOME -->
         <section class="welcome">
             <h2>Welcome to TrustVault</h2>
             <p>
-                Manage your documents securely. Upload, search,
-                share and control document access from one place.
+                Manage your documents securely.
+                Upload, search, share and control document access
+                from one place.
             </p>
         </section>
 
@@ -482,12 +557,17 @@ footer {
             </div>
 
             <div class="field">
-                <label for="upcat">Select Category</label>
-                <input id="upcat" type="text"
-                       placeholder="Enter document category">
+                <label for="upcat">Document Category</label>
+                <input
+                    id="upcat"
+                    type="text"
+                    placeholder="Example: Salary, Education, Personal"
+                >
             </div>
 
-            <button id="upBtn">Upload Document</button>
+            <button id="upBtn" type="button">
+                ⬆ Upload Document
+            </button>
 
         </section>
 
@@ -500,17 +580,29 @@ footer {
 
                 <div class="field">
                     <label for="q">Document Name</label>
-                    <input id="q" type="text" placeholder="Search name">
+                    <input
+                        id="q"
+                        type="text"
+                        placeholder="Search by name"
+                    >
                 </div>
 
                 <div class="field">
                     <label for="cat">Category</label>
-                    <input id="cat" type="text" placeholder="Category">
+                    <input
+                        id="cat"
+                        type="text"
+                        placeholder="Search category"
+                    >
                 </div>
 
                 <div class="field">
                     <label for="own">Owner</label>
-                    <input id="own" type="text" placeholder="Owner name">
+                    <input
+                        id="own"
+                        type="text"
+                        placeholder="Search owner"
+                    >
                 </div>
 
                 <div class="field">
@@ -518,7 +610,9 @@ footer {
                     <input id="since" type="date">
                 </div>
 
-                <button id="searchBtn">Search</button>
+                <button id="searchBtn" type="button">
+                    🔍 Search
+                </button>
 
             </div>
 
@@ -527,42 +621,66 @@ footer {
         <!-- DOCUMENTS -->
         <section class="panel">
 
-            <h2>Documents</h2>
+            <h2>My Documents</h2>
 
-            <div class="table-wrap" id="docs">
-                <!-- Existing app.js displays document table here -->
+            <div id="docs">
+                <!-- Documents are loaded by app.js -->
             </div>
 
         </section>
 
-        <!-- SHARING -->
+        <!-- ACCESS AND SHARING -->
         <section class="panel">
 
-            <h2>Sharing & Access Control</h2>
+            <h2>Sharing & Access Management</h2>
 
             <div id="grants">
-                Select Access on a document to view sharing details.
+                Select Access on a document to view permissions.
             </div>
 
         </section>
 
         <!-- ADMIN -->
-        <section id="adminBox" class="panel"
-                 style="display:none;">
+        <section id="adminBox" class="panel" hidden>
 
-            <h2>Admin Activity</h2>
+            <h2>Admin Dashboard</h2>
 
             <div class="admin-buttons">
 
-                <button id="auditBtn">All Activity</button>
+                <button
+                    type="button"
+                    data-p="/admin/audit"
+                >
+                    All Activity
+                </button>
 
-                <button id="deniedBtn">Refused Only</button>
+                <button
+                    type="button"
+                    data-p="/admin/audit?result=denied"
+                >
+                    Refused Only
+                </button>
 
-                <button id="permissionsBtn">Permission Changes</button>
+                <button
+                    type="button"
+                    data-p="/admin/audit?kind=permissions"
+                >
+                    Permission Changes
+                </button>
 
-                <button id="flaggedBtn">Flagged Users</button>
+                <button
+                    type="button"
+                    data-p="/admin/flagged"
+                >
+                    Flagged Users
+                </button>
 
-                <button id="verifyBtn">Verify Audit Chain</button>
+                <button
+                    type="button"
+                    data-p="/admin/audit/verify"
+                >
+                    Verify Audit Chain
+                </button>
 
             </div>
 
