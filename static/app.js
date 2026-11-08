@@ -49,7 +49,8 @@ async function start() {
   $("appBox").hidden = false;
   $("who").textContent = me.username + " (" + me.role + ")";
   $("adminBox").hidden = me.role !== "admin";
-  $("uploadBox").hidden = me.role === "viewer";
+  const ub = $("uploadBox");
+  if (ub) ub.hidden = me.role === "viewer";
   $("grants").replaceChildren();
   loadDocs();
 }
