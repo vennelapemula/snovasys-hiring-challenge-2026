@@ -38,26 +38,28 @@ body {
 /* HEADER */
 
 .top-header {
-  background: var(--navy);
-  color: white;
-  padding: 18px 5%;
+  width: 100%;
+  min-height: 90px;
+  padding: 15px 35px;
+  background: #172b4d;
+  border-bottom: 4px solid #087e8b;
+
   display: flex;
-  align-items: center;
+  flex-direction: row;
   justify-content: space-between;
-  gap: 18px;
-  flex-wrap: wrap;
-  border-bottom: 4px solid var(--teal);
+  align-items: center;
+  gap: 20px;
 }
 
 .brand h1 {
+  color: white;
   margin: 0;
   font-size: 28px;
-  letter-spacing: .4px;
 }
 
 .brand p {
-  margin: 5px 0 0;
   color: #cbd8e8;
+  margin: 5px 0 0;
   font-size: 13px;
 }
 
@@ -65,397 +67,66 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-
-#who {
+  gap: 15px;
   color: white;
-  font-weight: 600;
-  font-size: 14px;
-}
-
-/* MAIN */
-
-.container {
-  width: 92%;
-  max-width: 1150px;
-  margin: 22px auto;
-}
-
-#msg {
-  margin: 10px 0;
-  padding: 0;
-  color: var(--teal-dark);
-  font-weight: 600;
-  text-align: center;
-}
-
-/* LOGIN */
-
-.login-card {
-  max-width: 430px;
-  margin: 65px auto;
-  padding: 30px;
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 15px;
-  box-shadow: 0 5px 20px rgba(23,43,77,.08);
-}
-
-.login-card h2 {
-  color: var(--navy);
-  margin: 0 0 8px;
-}
-
-.login-card p {
-  color: var(--muted);
-  margin-bottom: 22px;
-}
-
-/* SECTIONS */
-
-.section-card {
-  background: var(--white);
-  padding: 20px 22px;
-  margin: 16px 0;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  box-shadow: 0 3px 12px rgba(23,43,77,.045);
-}
-
-.section-title {
-  margin: 0 0 16px;
-  padding-bottom: 10px;
-  color: var(--navy);
-  font-size: 21px;
-  border-bottom: 2px solid var(--light);
-  position: relative;
-}
-
-.section-title::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -2px;
-  width: 65px;
-  height: 3px;
-  background: var(--teal);
-}
-
-/* INPUTS */
-
-input, select {
-  width: 100%;
-  padding: 12px 13px;
-  margin: 6px 0 12px;
-  border: 1px solid #cbd5e1;
-  border-radius: 7px;
-  background: white;
-  color: var(--text);
-  font-size: 14px;
-  outline: none;
-}
-
-input:focus, select:focus {
-  border-color: var(--teal);
-  box-shadow: 0 0 0 3px rgba(8,126,139,.12);
-}
-
-label {
-  display: block;
-  font-weight: 600;
-  font-size: 13px;
-  color: var(--muted);
-  margin-top: 8px;
-}
-
-/* BUTTONS */
-
-button {
-  border: none;
-  border-radius: 7px;
-  padding: 11px 17px;
-  background: var(--teal);
-  color: white;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: .2s ease;
-}
-
-button:hover {
-  background: var(--teal-dark);
-  transform: translateY(-1px);
-}
-
-button:disabled {
-  opacity: .6;
-  cursor: wait;
-  transform: none;
+  margin-left: auto;
 }
 
 #logoutBtn {
-  background: var(--coral);
+  background: #e76f51;
   color: white;
-  padding: 11px 20px;
-  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 22px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 #logoutBtn:hover {
   background: #c9573d;
 }
 
-#loginBtn {
-  width: 100%;
-  background: var(--navy);
-  margin-top: 8px;
-}
-
-#loginBtn:hover {
-  background: #29466e;
-}
-
-.tv-delete {
-  background: var(--danger) !important;
-}
-
-.tv-delete:hover {
-  background: #ae3030 !important;
-}
-
-/* UPLOAD */
-
-.upload-row {
-  display: flex;
-  align-items: end;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.upload-row .field {
-  flex: 1;
-  min-width: 220px;
-}
-
-.upload-row input {
-  margin-bottom: 0;
-}
-
-.upload-row button {
-  margin-bottom: 0;
-}
-
-/* SEARCH */
-
-.search-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px 14px;
-  align-items: end;
-}
-
-.search-grid input {
-  margin: 0;
-}
-
-.search-action {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.search-action button {
-  white-space: nowrap;
-}
-
-/* DOCUMENT TABLE */
-
-#docs, #adminOut {
-  width: 100%;
-  overflow-x: auto;
-}
-
-#docs table, #adminOut table {
-  width: 100%;
-  min-width: 650px;
-  border-collapse: collapse;
-  margin-top: 15px;
-  background: white;
-}
-
-#docs th, #docs td,
-#adminOut th, #adminOut td {
-  border: 1px solid var(--border);
-  padding: 12px 10px;
-  text-align: left;
-  font-size: 13px;
-  overflow-wrap: anywhere;
-}
-
-#docs th, #adminOut th {
-  background: var(--navy);
-  color: white;
-  font-weight: 700;
-}
-
-#docs tr:nth-child(even),
-#adminOut tr:nth-child(even) {
-  background: #f5f9fc;
-}
-
-#docs td button {
-  margin: 3px;
-  padding: 8px 11px;
-  font-size: 12px;
-}
-
-#docs td a {
-  display: inline-block;
-  background: var(--light);
-  color: var(--teal-dark);
-  padding: 8px 10px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-#docs td a:hover {
-  background: #d5ebed;
-}
-
-.tv-empty {
-  padding: 20px;
-  text-align: center;
-  color: var(--muted);
-}
-
-/* ACCESS */
-
-#grants {
-  margin-top: 14px;
-  padding: 12px;
-  background: #f5f9fc;
-  border-radius: 8px;
-}
-
-#grants p {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  flex-wrap: wrap;
-  padding: 8px;
-  border-bottom: 1px solid var(--border);
-}
-
-/* ADMIN */
-
-.admin-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.admin-buttons button {
-  background: var(--navy);
-}
-
-.admin-buttons button:hover {
-  background: #29466e;
-}
-
-#adminOut {
-  margin-top: 15px;
-}
-
-/* FOOTER */
-
-footer {
-  text-align: center;
-  padding: 18px;
-  margin-top: 25px;
-  background: var(--navy);
-  color: #dce5ed;
-  font-size: 13px;
-}
-
-/* MOBILE */
-
-@media (max-width: 650px) {
+@media(max-width: 600px) {
   .top-header {
-    padding: 16px 5%;
+    padding: 12px;
+    gap: 10px;
   }
 
   .brand h1 {
-    font-size: 24px;
+    font-size: 20px;
   }
 
   .account-area {
-    width: 100%;
-    justify-content: space-between;
-    padding-top: 10px;
-    border-top: 1px solid rgba(255,255,255,.2);
+    gap: 7px;
+    font-size: 11px;
   }
 
-  .container {
-    width: 94%;
-    margin: 14px auto;
-  }
-
-  .section-card {
-    padding: 16px 13px;
-    margin: 12px 0;
-  }
-
-  .search-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .search-action {
-    width: 100%;
-  }
-
-  .search-action button {
-    width: 100%;
-  }
-
-  .upload-row {
-    display: block;
-  }
-
-  .upload-row .field {
-    min-width: 0;
-  }
-
-  .upload-row button {
-    width: 100%;
-    margin-top: 10px;
-  }
-
-  .login-card {
-    margin: 35px auto;
-    padding: 22px;
+  #logoutBtn {
+    padding: 9px 12px;
+    font-size: 12px;
   }
 }
+
+
 </style>
 </head>
 
 <body>
-
-<!-- HEADER -->
-<header class="top-header">
+  <header class="top-header">
   <div class="brand">
     <h1>🛡️ TrustVault</h1>
     <p>Secure Document Management</p>
   </div>
 
-  <!-- USER AND LOGOUT AT RIGHT SIDE -->
-  <div class="account-area" id="accountArea">
-    <span>Signed in as <strong id="who"></strong></span>
-    <button type="button" id="logoutBtn">Logout ↗</button>
+  <div class="account-area">
+    <span>
+      Signed in as <strong id="who"></strong>
+    </span>
+    <button type="button" id="logoutBtn">Logout</button>
   </div>
 </header>
+
+
 
 <main class="container">
 
