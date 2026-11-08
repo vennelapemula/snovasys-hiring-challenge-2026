@@ -69,3 +69,31 @@ def flagged():
     ).fetchall()
     conn.close()
     return jsonify([dict(r) for r in rows])
+from werkzeug.security import generate_password_hash
+
+
+@bp.post("/admin/users")
+@login_required
+def create_user():
+    blocked = _admin_only()
+    if blocked:
+        return blocked
+    data = request.get_json(silent=True) or {}
+    username = str(data.get("username", "")).strip()[:64]
+    password = str(data.get("password", ""))[:128]
+    role = data.get("role")
+    if not username or len(password) < 8 or role not in ("owner", "viewer", "admin"):
+        return jsonify(error="username, password (8+ chars) and role required"), 400
+    conn = get_db()
+    try:
+        conn.execute(
+            "INSERT INTO users (username, password_hash, role) VALUES (?,?,?)",
+            (username, generate_password_hash(password), role),
+        )
+        conn.commit()
+    except Exception:
+        conn.close()
+        return jsonify(error="username already exists"), 409
+    conn.close()
+    audit.log(g.user["id"], f"create_user_{username}_{role}", None, "ok")
+    return jsonify(message="user created"), 201
