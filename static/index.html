@@ -1,220 +1,519 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TrustVault</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrustVault - Secure Document Management</title>
+
 <style>
-:root{
-  --green:#15803d;
-  --green-dark:#14532d;
-  --green-deep:#064e3b;
-  --mint:#dcfce7;
-  --pale:#f0fdf4;
-  --border:#bbf7d0;
-  --white:#fff;
-  --text:#14532d;
+:root {
+  --primary: #635bdb;
+  --primary-dark: #4941b5;
+  --secondary: #8b5cf6;
+  --bg: #f4f5fb;
+  --surface: #ffffff;
+  --text: #20243a;
+  --muted: #777d94;
+  --border: #e7e8f0;
+  --danger: #dc3545;
 }
-*{box-sizing:border-box}
-[hidden]{display:none!important}
-body{
-  margin:0;
-  min-height:100vh;
-  font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
-  color:var(--text);
-  background:linear-gradient(135deg,#f0fdf4,#fff 55%,#e8f8ee);
-}
-input,button{
-  font:inherit;
-  border-radius:9px;
-}
-input{
-  min-width:0;
-  padding:11px 12px;
-  border:1px solid #86cda0;
-  background:#fff;
-  color:var(--text);
-  outline:none;
-}
-input:focus{border-color:var(--green);box-shadow:0 0 0 3px #16a34a20}
-button{
-  border:1px solid var(--green);
-  padding:10px 16px;
-  background:var(--green);
-  color:#fff;
-  font-weight:700;
-  cursor:pointer;
-  transition:.15s ease;
-}
-button:hover{background:#166534;transform:translateY(-1px)}
-a{color:var(--green)}
-#msg{color:#b45309;min-height:1.2em;margin:0 0 12px;font-size:14px}
 
-/* FIRST SCREEN: Login */
-#loginBox{
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  padding:28px 18px;
-  text-align:center;
+* {
+  box-sizing: border-box;
 }
-#loginBox:before{
-  content:"♙";
-  display:grid;
-  place-items:center;
-  width:76px;height:76px;
-  margin-bottom:15px;
-  border-radius:23px;
-  color:#fff;
-  font-size:38px;
-  background:linear-gradient(145deg,#16a34a,#064e3b);
-  box-shadow:0 12px 28px #064e3b2b;
-}
-#loginBox:after{
-  content:"SECURE  •  PRIVATE  •  TRUSTED";
-  order:-1;
-  margin-bottom:12px;
-  color:var(--green);
-  font-size:12px;
-  font-weight:800;
-  letter-spacing:2px;
-}
-#loginBox input{
-  display:block;
-  width:min(100%,390px);
-  margin:8px auto;
-  padding:13px 14px;
-  text-align:left;
-}
-#loginBox button{
-  width:min(100%,390px);
-  margin:8px auto;
-  padding:13px;
-  font-size:16px;
-}
-#loginBox input:first-of-type{margin-top:20px}
-#loginBox:has(#msg:not(:empty)) #msg{width:min(100%,390px)}
 
-/* Shared dashboard header */
-#appBox{min-height:100vh}
-#appBox>p:first-child{
-  margin:0;
-  padding:17px clamp(16px,4vw,48px);
-  display:flex;
-  align-items:center;
-  justify-content:flex-end;
-  gap:10px;
-  color:#fff;
-  background:linear-gradient(100deg,var(--green-deep),var(--green));
-  box-shadow:0 4px 16px #064e3b25;
+[hidden] {
+  display: none !important;
 }
-#who{color:#fff}
-#logoutBtn{background:#fff;color:var(--green-dark);border-color:#fff;padding:8px 14px}
-#logoutBtn:hover{background:var(--mint)}
 
-/* Dashboard layout */
-#uploadBox,#appBox>h2,#appBox>#q,#appBox>#cat,#appBox>#own,
-#appBox>#since,#searchBtn,#docs,#grants,#adminBox{
-  width:min(1120px,calc(100% - 32px));
-  margin-left:auto;
-  margin-right:auto;
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
 }
-#uploadBox,#docs,#grants,#adminBox{
-  display:block;
-  margin-top:20px;
-  padding:20px;
-  border:1px solid var(--border);
-  border-radius:15px;
-  background:rgba(255,255,255,.94);
-  box-shadow:0 5px 18px #064e3b0b;
+
+input, button {
+  font: inherit;
+  border-radius: 9px;
 }
-#uploadBox h2,#appBox>h2,#adminBox h2{
-  margin:0 0 14px;
-  color:var(--green-dark);
-  font-size:20px;
+
+input {
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text);
+  outline: none;
 }
-#file{max-width:100%}
-#upcat{width:min(260px,100%)}
-#upBtn{margin-left:6px}
-#appBox>h2{
-  margin-top:24px;
+
+input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px #635bdb20;
 }
-#appBox>#q,#appBox>#cat,#appBox>#own,#appBox>#since{
-  width:auto;
-  margin-top:0;
-  margin-bottom:10px;
+
+button {
+  padding: 10px 17px;
+  border: none;
+  background: var(--primary);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .2s;
 }
-#appBox>#q{margin-left:max(16px,calc((100% - 1120px)/2))}
-#searchBtn{width:auto;margin:0 max(16px,calc((100% - 1120px)/2));}
-.scroll{overflow-x:auto}
-table{border-collapse:collapse;width:100%;background:#fff}
-th{background:#dcfce7;color:var(--green-dark)}
-th,td{
-  border:1px solid var(--border);
-  padding:10px 12px;
-  text-align:left;
-  font-size:.9rem;
+
+button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
 }
-#grants:empty,#docs:empty{display:none}
-#adminBox{margin-bottom:36px}
-#adminBox button{margin:3px}
-#adminOut{margin-top:14px}
-@media(max-width:650px){
-  #appBox>p:first-child{justify-content:space-between;flex-wrap:wrap}
-  #uploadBox,#docs,#grants,#adminBox{padding:14px}
-  #upcat{width:100%;margin-top:8px}
-  #upBtn{margin:8px 0 0;width:100%}
-  #appBox>#q,#appBox>#cat,#appBox>#own,#appBox>#since{
-    display:block;width:calc(100% - 32px);margin:8px auto;
+
+/* LOGIN PAGE */
+
+#loginBox {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  background:
+    radial-gradient(circle at top left, #8b5cf640, transparent 40%),
+    linear-gradient(135deg, #171a35, #29245a 60%, #42358b);
+}
+
+#loginBox::before {
+  content: "🔐";
+  font-size: 43px;
+  display: grid;
+  place-items: center;
+  width: 85px;
+  height: 85px;
+  background: #ffffff20;
+  border: 1px solid #ffffff35;
+  border-radius: 25px;
+  margin-bottom: 20px;
+}
+
+#loginBox::after {
+  content: "TRUSTVAULT";
+  color: white;
+  font-size: 29px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  order: -1;
+  margin-bottom: 28px;
+}
+
+#loginBox input {
+  width: min(100%, 370px);
+  padding: 15px;
+  margin: 8px 0;
+  background: #ffffff;
+}
+
+#loginBox button {
+  width: min(100%, 370px);
+  padding: 14px;
+  margin-top: 15px;
+  background: linear-gradient(100deg, #635bdb, #9b5cf6);
+  font-size: 16px;
+}
+
+#loginBox button:hover {
+  background: linear-gradient(100deg, #4941b5, #7843d4);
+}
+
+#loginBox #msg {
+  color: #ffd18c;
+}
+
+/* STATUS MESSAGE */
+
+#msg {
+  min-height: 1.2em;
+  color: #b45309;
+  text-align: center;
+  font-size: 14px;
+  margin: 8px;
+}
+
+/* DASHBOARD */
+
+#appBox {
+  min-height: 100vh;
+}
+
+/* HEADER */
+
+#appBox > p:first-child {
+  margin: 0;
+  min-height: 75px;
+  padding: 15px 4%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  background: linear-gradient(105deg, #25234e, #5145a9);
+  color: white;
+  box-shadow: 0 4px 18px #20204a20;
+}
+
+#appBox > p:first-child::before {
+  content: "🔐 TRUSTVAULT";
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-right: auto;
+}
+
+#who {
+  color: white;
+  font-weight: 500;
+}
+
+#logoutBtn {
+  background: #ffffff;
+  color: #5145a9;
+  padding: 9px 20px;
+}
+
+#logoutBtn:hover {
+  background: #eeeaff;
+}
+
+/* MAIN CONTENT */
+
+#uploadBox,
+#appBox > h2,
+#appBox > #q,
+#appBox > #cat,
+#appBox > #own,
+#appBox > #since,
+#searchBtn,
+#docs,
+#grants,
+#adminBox {
+  width: min(1200px, calc(100% - 40px));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#uploadBox,
+#docs,
+#grants,
+#adminBox {
+  margin-top: 22px;
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  box-shadow: 0 5px 22px #29245a0a;
+}
+
+#uploadBox h2,
+#appBox > h2,
+#adminBox h2 {
+  color: #35305e;
+  margin-top: 0;
+  margin-bottom: 18px;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+#uploadBox {
+  border-top: 4px solid var(--primary);
+}
+
+#file {
+  max-width: 100%;
+  padding: 9px;
+}
+
+#upcat {
+  width: 240px;
+  margin-left: 10px;
+}
+
+#upBtn {
+  margin-left: 10px;
+}
+
+/* DOCUMENT SECTION */
+
+#appBox > h2 {
+  margin-top: 30px;
+  margin-bottom: 18px;
+}
+
+#appBox > #q,
+#appBox > #cat,
+#appBox > #own,
+#appBox > #since {
+  width: auto;
+  margin-top: 0;
+  margin-bottom: 12px;
+  margin-right: 8px;
+}
+
+#appBox > #q {
+  margin-left: max(20px, calc((100% - 1200px)/2));
+}
+
+#searchBtn {
+  width: auto;
+  margin-left: max(20px, calc((100% - 1200px)/2));
+  margin-right: 0;
+}
+
+/* TABLE DESIGN */
+
+.scroll {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  min-width: 650px;
+}
+
+th {
+  background: #eeedff;
+  color: #443b9b;
+  font-weight: 700;
+}
+
+th, td {
+  padding: 13px 14px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  font-size: 14px;
+}
+
+tr:hover td {
+  background: #f8f7ff;
+}
+
+td button {
+  margin: 3px;
+  padding: 7px 11px;
+  font-size: 12px;
+}
+
+td button:last-child {
+  background: var(--danger);
+}
+
+td a {
+  display: inline-block;
+  margin: 5px;
+  color: var(--primary);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+td a:hover {
+  text-decoration: underline;
+}
+
+/* ACCESS SECTION */
+
+#grants h3 {
+  color: #443b9b;
+  margin-top: 0;
+}
+
+#grants p {
+  padding: 10px;
+  background: #f7f6ff;
+  border-radius: 8px;
+}
+
+/* ADMIN PANEL */
+
+#adminBox {
+  border-top: 4px solid #8b5cf6;
+  margin-bottom: 35px;
+}
+
+#adminBox button {
+  margin: 5px;
+  background: #5145a9;
+}
+
+#adminBox button:hover {
+  background: #373078;
+}
+
+#adminOut {
+  margin-top: 20px;
+}
+
+/* RESPONSIVE DESIGN */
+
+@media(max-width: 700px) {
+  #appBox > p:first-child {
+    flex-wrap: wrap;
+    padding: 15px;
   }
-  #searchBtn{display:block;width:calc(100% - 32px);margin:8px auto}
+
+  #appBox > p:first-child::before {
+    width: 100%;
+    font-size: 19px;
+  }
+
+  #uploadBox,
+  #docs,
+  #grants,
+  #adminBox {
+    width: calc(100% - 24px);
+    padding: 15px;
+  }
+
+  #appBox > #q,
+  #appBox > #cat,
+  #appBox > #own,
+  #appBox > #since {
+    display: block;
+    width: calc(100% - 24px);
+    margin: 9px auto;
+  }
+
+  #upcat {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  #upBtn {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  #searchBtn {
+    display: block;
+    width: calc(100% - 24px);
+    margin: 10px auto;
+  }
+
+  #file {
+    width: 100%;
+  }
+
+  #adminBox button {
+    width: 100%;
+    margin: 5px 0;
+  }
 }
 </style>
 </head>
+
 <body>
 
-<!-- FIRST SCREEN: original IDs and wording retained -->
-<p id="msg" role="status"></p>
+<p id="msg" role="status" aria-live="polite"></p>
+
+<!-- LOGIN PAGE -->
+
 <section id="loginBox">
-  <input id="u" placeholder="username" autocomplete="username">
-  <input id="p" type="password" placeholder="password" autocomplete="current-password">
-  <button id="loginBtn">Login</button>
+
+  <input
+    id="u"
+    placeholder="Enter username"
+    autocomplete="username"
+  >
+
+  <input
+    id="p"
+    type="password"
+    placeholder="Enter password"
+    autocomplete="current-password"
+  >
+
+  <button id="loginBtn">Login to TrustVault →</button>
+
 </section>
 
-<!-- SECOND SCREEN: hidden until the original app.js signs in -->
+<!-- DASHBOARD -->
+
 <section id="appBox" hidden>
-  <p>Signed in as <b id="who"></b> <button id="logoutBtn">Logout</button></p>
+
+  <p>
+    Signed in as <b id="who"></b>
+    <button id="logoutBtn">Logout</button>
+  </p>
+
+  <!-- UPLOAD -->
 
   <div id="uploadBox">
-    <h2>Upload</h2>
+
+    <h2>📁 Upload Documents</h2>
+
     <input id="file" type="file">
-    <input id="upcat" placeholder="category">
-    <button id="upBtn">Upload</button>
+
+    <input
+      id="upcat"
+      placeholder="Enter document category"
+    >
+
+    <button id="upBtn">⬆ Upload Document</button>
+
   </div>
 
-  <h2>Documents</h2>
-  <input id="q" placeholder="name">
-  <input id="cat" placeholder="category">
-  <input id="own" placeholder="owner">
+  <!-- DOCUMENTS -->
+
+  <h2>📂 My Documents</h2>
+
+  <input id="q" placeholder="Search by name">
+
+  <input id="cat" placeholder="Category">
+
+  <input id="own" placeholder="Owner">
+
   <input id="since" type="date">
-  <button id="searchBtn">Search</button>
+
+  <button id="searchBtn">🔍 Search</button>
+
   <div id="docs" class="scroll"></div>
+
+  <!-- ACCESS MANAGEMENT -->
+
   <div id="grants" class="scroll"></div>
 
+  <!-- ADMIN PANEL -->
+
   <section id="adminBox" hidden>
-    <h2>Admin: activity</h2>
-    <button data-p="/admin/audit">All activity</button>
-    <button data-p="/admin/audit?result=denied">Refused only</button>
-    <button data-p="/admin/audit?kind=permissions">Permission changes</button>
-    <button data-p="/admin/flagged">Flagged users</button>
-    <button data-p="/admin/audit/verify">Verify audit chain</button>
+
+    <h2>⚙ Admin Dashboard</h2>
+
+    <button data-p="/admin/audit">
+      📊 All Activity
+    </button>
+
+    <button data-p="/admin/audit?result=denied">
+      🚫 Refused Only
+    </button>
+
+    <button data-p="/admin/audit?kind=permissions">
+      🔑 Permission Changes
+    </button>
+
+    <button data-p="/admin/flagged">
+      ⚠ Flagged Users
+    </button>
+
+    <button data-p="/admin/audit/verify">
+      ✔ Verify Audit Chain
+    </button>
+
     <div id="adminOut" class="scroll"></div>
+
   </section>
+
 </section>
 
-<!-- Keep this original JavaScript path; it is required by your project. -->
+<!-- ORIGINAL JAVASCRIPT FILE -->
+
 <script src="/static/app.js"></script>
+
 </body>
 </html>
