@@ -6,46 +6,26 @@
 <title>TrustVault - Secure Document Management</title>
 
 <style>
-:root {
-  --navy: #172b4d;
-  --teal: #087e8b;
-  --teal-dark: #05616b;
-  --coral: #e76f51;
-  --bg: #f3f7fa;
-  --white: #ffffff;
-  --text: #243447;
-  --muted: #64748b;
-  --border: #dce5ed;
-  --light: #eaf4f5;
-  --danger: #d64545;
-}
-
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-}
-
-[hidden] {
-  display: none !important;
+  font-family: Arial, sans-serif;
+  background: #f2f5fa;
+  color: #26354a;
 }
 
 /* HEADER */
-
 .top-header {
   width: 100%;
   min-height: 90px;
   padding: 15px 35px;
   background: #172b4d;
   border-bottom: 4px solid #087e8b;
-
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
@@ -53,170 +33,1055 @@ body {
 
 .brand h1 {
   color: white;
-  margin: 0;
-  font-size: 28px;
+  font-size: 29px;
+  letter-spacing: 1px;
 }
 
 .brand p {
-  color: #cbd8e8;
-  margin: 5px 0 0;
+  color: #c7d7ed;
+  margin-top: 5px;
   font-size: 13px;
 }
 
-.account-area {
+.header-right {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  gap: 15px;
-  color: white;
-  margin-left: auto;
+  gap: 12px;
 }
 
-#logoutBtn {
-  background: #e76f51;
+.header-right span {
+  color: white;
+}
+
+/* SOUND */
+.sound-control {
+  margin-top: 9px;
+  color: #dceaf7;
+  font-size: 12px;
+}
+
+.sound-control button {
+  padding: 4px 10px;
+  margin-left: 5px;
+  font-size: 12px;
+}
+
+/* MAIN */
+.container {
+  max-width: 1200px;
+  margin: 25px auto;
+  padding: 0 20px;
+}
+
+.card {
+  background: white;
+  padding: 22px;
+  border-radius: 9px;
+  margin-bottom: 20px;
+  border: 1px solid #dce4ef;
+  box-shadow: 0 3px 12px rgba(23,43,77,.06);
+}
+
+.card h2 {
+  font-size: 19px;
+  color: #172b4d;
+  margin-bottom: 17px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e7edf5;
+}
+
+.card h3 {
+  color: #172b4d;
+  margin: 15px 0 10px;
+  font-size: 15px;
+}
+
+/* INPUTS */
+input, select {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid #ccd6e4;
+  border-radius: 5px;
+  margin: 6px 0 12px;
+  font-size: 14px;
+  background: white;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #087e8b;
+}
+
+label {
+  font-size: 13px;
+  font-weight: bold;
+  color: #34445b;
+}
+
+button {
+  background: #087e8b;
   color: white;
   border: none;
-  border-radius: 8px;
-  padding: 12px 22px;
-  font-weight: bold;
+  padding: 10px 17px;
+  border-radius: 5px;
   cursor: pointer;
+  font-weight: bold;
+  font-size: 13px;
 }
 
-#logoutBtn:hover {
-  background: #c9573d;
+button:hover {
+  background: #06636e;
 }
 
-@media(max-width: 600px) {
+button:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+.btn-dark {
+  background: #172b4d;
+}
+
+.btn-dark:hover {
+  background: #263f67;
+}
+
+.btn-danger {
+  background: #c0394a;
+}
+
+.btn-danger:hover {
+  background: #a52b3b;
+}
+
+.btn-light {
+  background: #e7edf5;
+  color: #172b4d;
+}
+
+.btn-light:hover {
+  background: #d5e0ed;
+}
+
+/* LOGIN */
+.login-card {
+  max-width: 430px;
+  margin: 55px auto;
+}
+
+/* LAYOUT */
+.two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 10px;
+  align-items: end;
+}
+
+.doc-item {
+  border: 1px solid #dce4ef;
+  border-radius: 7px;
+  padding: 15px;
+  margin-bottom: 12px;
+  background: #fbfcfe;
+}
+
+.doc-item strong {
+  color: #172b4d;
+  font-size: 15px;
+}
+
+.doc-item p {
+  font-size: 13px;
+  color: #64748b;
+  margin: 7px 0;
+  overflow-wrap: anywhere;
+}
+
+.doc-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 12px;
+}
+
+.doc-actions button {
+  padding: 8px 11px;
+}
+
+.badge {
+  display: inline-block;
+  background: #e0f2f3;
+  color: #087e8b;
+  padding: 4px 9px;
+  border-radius: 20px;
+  font-size: 11px;
+  margin-top: 5px;
+}
+
+#msg {
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  font-size: 13px;
+  display: none;
+}
+
+#msg.show {
+  display: block;
+}
+
+#msg.error {
+  background: #fde8e8;
+  color: #a32232;
+}
+
+#msg.success {
+  background: #e1f4ee;
+  color: #126b4a;
+}
+
+#msg.info {
+  background: #e5eefb;
+  color: #244a78;
+}
+
+.empty {
+  text-align: center;
+  color: #8492a6;
+  padding: 25px;
+  font-size: 14px;
+}
+
+.admin-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.admin-output {
+  background: #f3f6fa;
+  border-radius: 6px;
+  padding: 15px;
+  margin-top: 15px;
+  font-size: 13px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: 300px;
+  overflow: auto;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@media(max-width: 750px) {
   .top-header {
-    padding: 12px;
-    gap: 10px;
+    padding: 15px;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .brand h1 {
-    font-size: 20px;
+  .two-column {
+    grid-template-columns: 1fr;
   }
 
-  .account-area {
-    gap: 7px;
-    font-size: 11px;
+  .filters {
+    grid-template-columns: 1fr 1fr;
   }
 
-  #logoutBtn {
-    padding: 9px 12px;
-    font-size: 12px;
+  .container {
+    padding: 0 12px;
   }
 }
 
-
+@media(max-width: 420px) {
+  .filters {
+    grid-template-columns: 1fr;
+  }
+}
 </style>
 </head>
 
 <body>
-  <header class="top-header">
+
+<!-- HEADER -->
+<header class="top-header">
   <div class="brand">
-    <h1>🛡️ TrustVault</h1>
-    <p>Secure Document Management</p>
+    <h1>TrustVault</h1>
+    <p>Secure Document Management System</p>
+
+    <div class="sound-control">
+      Sound
+      <button id="soundBtn" class="btn-light" onclick="toggleSound()">
+        🔊 ON
+      </button>
+    </div>
   </div>
 
-  <div class="account-area">
-    <span>
-      Signed in as <strong id="who"></strong>
-    </span>
-    <button type="button" id="logoutBtn">Logout</button>
+  <div class="header-right hidden" id="headerUser">
+    <span id="headerWho"></span>
   </div>
 </header>
 
-
-
 <main class="container">
 
-  <p id="msg"></p>
+<div id="msg"></div>
 
-  <!-- LOGIN SECTION -->
-  <section id="loginBox" class="login-card" hidden>
-    <h2>Welcome Back</h2>
-    <p>Login to access your secure documents.</p>
+<!-- LOGIN -->
+<section id="loginBox" class="card login-card">
+  <h2>Login to TrustVault</h2>
 
-    <label for="u">Username</label>
-    <input id="u" type="text" placeholder="Enter username" autocomplete="username">
+  <label>Username</label>
+  <input id="u" type="text" placeholder="Enter username">
 
-    <label for="p">Password</label>
-    <input id="p" type="password" placeholder="Enter password" autocomplete="current-password">
+  <label>Password</label>
+  <input id="p" type="password" placeholder="Enter password">
 
-    <button type="button" id="loginBtn">Login to TrustVault →</button>
+  <button id="loginBtn" class="btn-dark" style="width:100%">
+    Login
+  </button>
+
+  <p style="margin-top:15px;color:#8290a3;font-size:12px;text-align:center">
+    Your documents. Your security. Your control.
+  </p>
+</section>
+
+<!-- APPLICATION -->
+<div id="appBox" class="hidden">
+
+  <!-- USER -->
+  <section class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+      <div>
+        <h2 style="border:0;margin:0;padding:0">Dashboard</h2>
+        <p style="margin-top:7px;font-size:13px;color:#64748b">
+          Welcome, <strong id="who"></strong>
+        </p>
+      </div>
+
+      <button id="logoutBtn" class="btn-danger">Logout</button>
+    </div>
   </section>
 
-  <!-- APPLICATION -->
-  <div id="appBox" hidden>
+  <!-- UPLOAD -->
+  <section class="card" id="uploadBox">
+    <h2>Upload Documents</h2>
 
-    <!-- UPLOAD DOCUMENT -->
-    <section id="uploadBox" class="section-card">
-      <h2 class="section-title">📤 Upload Document</h2>
+    <label>Select Document</label>
+    <input type="file" id="file">
 
-      <div class="upload-row">
-        <div class="field">
-          <label for="file">Choose Document</label>
-          <input id="file" type="file">
-        </div>
+    <label>Document Category</label>
+    <select id="upcat">
+      <option value="General">General</option>
+      <option value="Personal">Personal</option>
+      <option value="Education">Education</option>
+      <option value="Employment">Employment</option>
+      <option value="Financial">Financial</option>
+      <option value="Legal">Legal</option>
+      <option value="Other">Other</option>
+    </select>
 
-        <div class="field">
-          <label for="upcat">Document Category</label>
-          <input id="upcat" type="text" placeholder="Example: Salary, Education, Personal">
-        </div>
+    <button id="upBtn">Upload Document</button>
+  </section>
 
-        <button type="button" id="upBtn">⬆ Upload Document</button>
-      </div>
-    </section>
+  <!-- SEARCH -->
+  <section class="card">
+    <h2>Search Documents</h2>
 
-    <!-- SEARCH DOCUMENTS -->
-    <section class="section-card">
-      <h2 class="section-title">🔍 Search Documents</h2>
-
-      <div class="search-grid">
-        <input id="q" type="text" placeholder="Document name">
-
-        <input id="cat" type="text" placeholder="Category">
-
-        <input id="own" type="text" placeholder="Owner">
-
-        <div class="search-action">
-          <input id="since" type="date" aria-label="From date">
-          <button type="button" id="searchBtn">Search</button>
-        </div>
+    <div class="filters">
+      <div>
+        <label>Search</label>
+        <input id="q" placeholder="Search document name...">
       </div>
 
-      <div id="docs"></div>
-    </section>
-
-    <!-- SHARING AND ACCESS -->
-    <section class="section-card">
-      <h2 class="section-title">🔐 Document Access</h2>
-      <div id="grants">Select Access on a document to manage permissions.</div>
-    </section>
-
-    <!-- ADMIN -->
-    <section id="adminBox" class="section-card" hidden>
-      <h2 class="section-title">⚙️ Admin Activity</h2>
-
-      <div class="admin-buttons">
-        <button type="button" data-p="/admin/audit">All Activity</button>
-        <button type="button" data-p="/admin/audit?result=denied">Refused Only</button>
-        <button type="button" data-p="/admin/audit?kind=permissions">Permission Changes</button>
-        <button type="button" data-p="/admin/flagged">Flagged Users</button>
-        <button type="button" data-p="/admin/audit/verify">Verify Audit Chain</button>
+      <div>
+        <label>Category</label>
+        <select id="cat">
+          <option value="">All Categories</option>
+          <option value="General">General</option>
+          <option value="Personal">Personal</option>
+          <option value="Education">Education</option>
+          <option value="Employment">Employment</option>
+          <option value="Financial">Financial</option>
+          <option value="Legal">Legal</option>
+          <option value="Other">Other</option>
+        </select>
       </div>
 
-      <div id="adminOut"></div>
-    </section>
+      <div>
+        <label>Owner</label>
+        <input id="own" placeholder="Username">
+      </div>
 
-  </div>
+      <div>
+        <label>Since</label>
+        <input id="since" type="date">
+      </div>
+    </div>
+
+    <button id="searchBtn">Search</button>
+    <button id="clearBtn" class="btn-light">Clear</button>
+  </section>
+
+  <!-- DOCUMENTS -->
+  <section class="card">
+    <h2>My Documents</h2>
+    <div id="docs">
+      <div class="empty">Loading documents...</div>
+    </div>
+  </section>
+
+  <!-- GRANTS -->
+  <section class="card">
+    <h2>Shared Access / Permissions</h2>
+    <div id="grants">
+      <div class="empty">Select a document to view its permissions.</div>
+    </div>
+  </section>
+
+  <!-- ADMIN -->
+  <section class="card hidden" id="adminBox">
+    <h2>Admin Dashboard</h2>
+
+    <div class="admin-buttons">
+      <button data-p="audit">All Audit Logs</button>
+      <button data-p="denied">Denied Requests</button>
+      <button data-p="permissions">Permission Logs</button>
+      <button data-p="flagged">Flagged Documents</button>
+      <button data-p="verify">Verify Audit</button>
+    </div>
+
+    <h3>Admin Results</h3>
+    <pre id="adminOut" class="admin-output">Select an admin action.</pre>
+  </section>
+
+</div>
 </main>
 
-<footer>
-  TrustVault © 2026 | Secure Document Management
-</footer>
+<script>
+const $ = id => document.getElementById(id);
 
-<script src="/static/app.js"></script>
+const JSONH = {
+  "Content-Type": "application/json"
+};
+
+let me = null;
+let soundOn = true;
+let audioContext = null;
+let selectedDoc = null;
+let documents = [];
+
+/* SOUND */
+
+function playSound() {
+  if (!soundOn) return;
+
+  try {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return;
+
+    audioContext = audioContext || new AudioCtx();
+
+    if (audioContext.state === "suspended") {
+      audioContext.resume();
+    }
+
+    const oscillator = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+
+    oscillator.connect(gain);
+    gain.connect(audioContext.destination);
+
+    oscillator.frequency.value = 650;
+    gain.gain.value = 0.035;
+
+    oscillator.start();
+    oscillator.stop(audioContext.currentTime + 0.08);
+  } catch (e) {
+    console.log("Sound unavailable");
+  }
+}
+
+function toggleSound() {
+  soundOn = !soundOn;
+
+  $("soundBtn").textContent = soundOn ? "🔊 ON" : "🔇 OFF";
+
+  if (soundOn) playSound();
+}
+
+/* MESSAGE */
+
+function msg(message, type = "info") {
+  const box = $("msg");
+
+  box.textContent = message;
+  box.className = "show " + type;
+
+  if (message) playSound();
+}
+
+/* ELEMENT */
+
+function el(tag, text) {
+  const e = document.createElement(tag);
+
+  if (text !== undefined) {
+    e.textContent = text;
+  }
+
+  return e;
+}
+
+/* API */
+
+async function api(path, opts = {}) {
+  const response = await fetch(path, opts);
+
+  if (response.status === 204) {
+    if (!response.ok) throw new Error("Request failed");
+    return null;
+  }
+
+  const contentType = response.headers.get("content-type") || "";
+
+  let data;
+
+  if (contentType.includes("application/json")) {
+    data = await response.json();
+  } else {
+    data = await response.text();
+  }
+
+  if (!response.ok) {
+    const error = typeof data === "object"
+      ? (data.detail || data.error || data.message)
+      : data;
+
+    throw new Error(error || "Request failed");
+  }
+
+  return data;
+}
+
+function options(method, body) {
+  const result = { method };
+
+  if (body !== undefined) {
+    result.body = body;
+  }
+
+  return result;
+}
+
+function showError(error) {
+  console.error(error);
+  msg(error.message || "Something went wrong", "error");
+}
+
+/* AUTH */
+
+async function checkLogin() {
+  try {
+    const data = await api("/me");
+
+    me = data.user || data.username || data;
+
+    showApp(data);
+    await loadDocuments();
+
+  } catch (e) {
+    me = null;
+    $("loginBox").classList.remove("hidden");
+    $("appBox").classList.add("hidden");
+  }
+}
+
+function showApp(data) {
+  $("loginBox").classList.add("hidden");
+  $("appBox").classList.remove("hidden");
+
+  const username = typeof me === "string"
+    ? me
+    : (me.username || me.name || data.username || "User");
+
+  $("who").textContent = username;
+  $("headerWho").textContent = "Welcome, " + username;
+
+  $("headerUser").classList.remove("hidden");
+
+  const role = (
+    me && typeof me === "object" ? me.role : data.role
+  ) || data.role || "";
+
+  if (String(role).toLowerCase() === "admin") {
+    $("adminBox").classList.remove("hidden");
+  }
+}
+
+$("loginBtn").addEventListener("click", login);
+
+async function login() {
+  const username = $("u").value.trim();
+  const password = $("p").value;
+
+  if (!username || !password) {
+    msg("Enter username and password", "error");
+    return;
+  }
+
+  try {
+    $("loginBtn").disabled = true;
+
+    await api("/login", {
+      method: "POST",
+      headers: JSONH,
+      body: JSON.stringify({
+        username,
+        password
+      })
+    });
+
+    await checkLogin();
+
+    if (me) {
+      msg("Login successful", "success");
+    }
+
+  } catch (e) {
+    showError(e);
+  } finally {
+    $("loginBtn").disabled = false;
+  }
+}
+
+$("p").addEventListener("keydown", e => {
+  if (e.key === "Enter") login();
+});
+
+$("u").addEventListener("keydown", e => {
+  if (e.key === "Enter") $("p").focus();
+});
+
+$("logoutBtn").addEventListener("click", async () => {
+  try {
+    await api("/logout", options("POST"));
+
+    me = null;
+    selectedDoc = null;
+
+    $("appBox").classList.add("hidden");
+    $("loginBox").classList.remove("hidden");
+    $("headerUser").classList.add("hidden");
+
+    $("p").value = "";
+
+    msg("Logged out successfully", "success");
+
+  } catch (e) {
+    showError(e);
+  }
+});
+
+/* UPLOAD */
+
+$("upBtn").addEventListener("click", uploadDocument);
+
+async function uploadDocument() {
+  const file = $("file").files[0];
+
+  if (!file) {
+    msg("Please select a document", "error");
+    return;
+  }
+
+  const form = new FormData();
+
+  form.append("file", file);
+  form.append("category", $("upcat").value);
+
+  try {
+    $("upBtn").disabled = true;
+
+    await api("/documents", {
+      method: "POST",
+      body: form
+    });
+
+    $("file").value = "";
+
+    msg("Document uploaded successfully", "success");
+
+    await loadDocuments();
+
+  } catch (e) {
+    showError(e);
+  } finally {
+    $("upBtn").disabled = false;
+  }
+}
+
+/* DOCUMENT SEARCH */
+
+$("searchBtn").addEventListener("click", loadDocuments);
+
+$("q").addEventListener("keydown", e => {
+  if (e.key === "Enter") loadDocuments();
+});
+
+$("clearBtn").addEventListener("click", () => {
+  $("q").value = "";
+  $("cat").value = "";
+  $("own").value = "";
+  $("since").value = "";
+
+  loadDocuments();
+});
+
+async function loadDocuments() {
+  const params = new URLSearchParams();
+
+  if ($("q").value.trim()) {
+    params.set("q", $("q").value.trim());
+  }
+
+  if ($("cat").value) {
+    params.set("category", $("cat").value);
+  }
+
+  if ($("own").value.trim()) {
+    params.set("owner", $("own").value.trim());
+  }
+
+  if ($("since").value) {
+    params.set("since", $("since").value);
+  }
+
+  const url = "/documents" +
+    (params.toString() ? "?" + params.toString() : "");
+
+  try {
+    $("docs").innerHTML =
+      '<div class="empty">Loading...</div>';
+
+    const data = await api(url);
+
+    documents = Array.isArray(data)
+      ? data
+      : (data.documents || data.items || []);
+
+    renderDocuments();
+
+  } catch (e) {
+    $("docs").innerHTML =
+      '<div class="empty">Unable to load documents.</div>';
+
+    showError(e);
+  }
+}
+
+/* DOCUMENT DISPLAY */
+
+function renderDocuments() {
+  const container = $("docs");
+  container.replaceChildren();
+
+  if (!documents.length) {
+    container.append(
+      el("div", "No documents found.")
+    ).className = "empty";
+
+    return;
+  }
+
+  documents.forEach(doc => {
+    const item = el("div");
+    item.className = "doc-item";
+
+    const name = el("strong",
+      doc.filename || doc.name || doc.title || "Document"
+    );
+
+    const category = el("span", doc.category || "General");
+    category.className = "badge";
+
+    const details = el("p",
+      "Owner: " + (doc.owner || doc.username || "Unknown") +
+      " | ID: " + doc.id
+    );
+
+    const date = el("p",
+      "Uploaded: " + (doc.created_at || doc.uploaded_at || "N/A")
+    );
+
+    const actions = el("div");
+    actions.className = "doc-actions";
+
+    const download = el("button", "Download");
+    download.addEventListener("click", () =>
+      downloadDocument(doc.id)
+    );
+
+    const access = el("button", "Manage Access");
+    access.className = "btn-dark";
+    access.addEventListener("click", () =>
+      loadGrants(doc.id)
+    );
+
+    const share = el("button", "Share");
+    share.addEventListener("click", () =>
+      shareDocument(doc.id)
+    );
+
+    const remove = el("button", "Delete");
+    remove.className = "btn-danger";
+    remove.addEventListener("click", () =>
+      deleteDocument(doc.id)
+    );
+
+    actions.append(download, access, share);
+
+    const owner = doc.owner || doc.username;
+    const currentUser = typeof me === "string"
+      ? me
+      : (me?.username || "");
+
+    if (String(owner) === String(currentUser) ||
+        String(me?.role || "").toLowerCase() === "admin") {
+      actions.append(remove);
+    }
+
+    item.append(name, document.createTextNode(" "), category,
+      details, date, actions);
+
+    container.append(item);
+  });
+}
+
+/* DOWNLOAD */
+
+async function downloadDocument(id) {
+  try {
+    const response = await fetch(
+      "/documents/" + encodeURIComponent(id) + "/download"
+    );
+
+    if (!response.ok) {
+      throw new Error("Download failed");
+    }
+
+    const blob = await response.blob();
+
+    const url = URL.createObjectURL(blob);
+    const a = el("a");
+
+    a.href = url;
+    a.download = "document-" + id;
+
+    document.body.append(a);
+    a.click();
+    a.remove();
+
+    URL.revokeObjectURL(url);
+
+  } catch (e) {
+    showError(e);
+  }
+}
+
+/* SHARE */
+
+async function shareDocument(id) {
+  const username = prompt("Enter username to share this document:");
+
+  if (!username || !username.trim()) return;
+
+  const permission = prompt(
+    "Enter permission: read or write",
+    "read"
+  );
+
+  if (!permission) return;
+
+  try {
+    await api(
+      "/documents/" + encodeURIComponent(id) + "/grants",
+      {
+        method: "POST",
+        headers: JSONH,
+        body: JSON.stringify({
+          username: username.trim(),
+          permission: permission.trim()
+        })
+      }
+    );
+
+    msg("Document shared successfully", "success");
+
+    await loadGrants(id);
+
+  } catch (e) {
+    showError(e);
+  }
+}
+
+/* GRANTS */
+
+async function loadGrants(id) {
+  selectedDoc = id;
+
+  try {
+    const data = await api(
+      "/documents/" + encodeURIComponent(id) + "/grants"
+    );
+
+    const grants = Array.isArray(data)
+      ? data
+      : (data.grants || data.items || []);
+
+    renderGrants(grants);
+
+  } catch (e) {
+    showError(e);
+  }
+}
+
+function renderGrants(grants) {
+  const container = $("grants");
+  container.replaceChildren();
+
+  if (!grants.length) {
+    container.append(
+      el("div", "No shared permissions found.")
+    ).className = "empty";
+
+    return;
+  }
+
+  grants.forEach(grant => {
+    const item = el("div");
+    item.className = "doc-item";
+
+    const username = grant.username || grant.user || "Unknown";
+
+    const title = el("strong", username);
+    const details = el("p",
+      "Permission: " +
+      (grant.permission || grant.access || "Read")
+    );
+
+    const revoke = el("button", "Revoke Access");
+    revoke.className = "btn-danger";
+
+    revoke.addEventListener("click", () =>
+      revokeAccess(selectedDoc, username)
+    );
+
+    item.append(title, details, revoke);
+    container.append(item);
+  });
+}
+
+/* REVOKE */
+
+async function revokeAccess(id, username) {
+  if (!confirm("Revoke access for " + username + "?")) return;
+
+  try {
+    await api(
+      "/documents/" + encodeURIComponent(id) +
+      "/grants/" + encodeURIComponent(username),
+      options("DELETE")
+    );
+
+    msg("Access revoked successfully", "success");
+
+    await loadGrants(id);
+
+  } catch (e) {
+    showError(e);
+  }
+}
+
+/* DELETE */
+
+async function deleteDocument(id) {
+  if (!confirm("Are you sure you want to delete this document?")) {
+    return;
+  }
+
+  try {
+    await api(
+      "/documents/" + encodeURIComponent(id),
+      options("DELETE")
+    );
+
+    msg("Document deleted successfully", "success");
+
+    if (selectedDoc === id) {
+      selectedDoc = null;
+      $("grants").innerHTML =
+        '<div class="empty">Select a document to view its permissions.</div>';
+    }
+
+    await loadDocuments();
+
+  } catch (e) {
+    showError(e);
+  }
+}
+
+/* ADMIN */
+
+$("adminBox").addEventListener("click", async e => {
+  const button = e.target.closest("button[data-p]");
+
+  if (!button) return;
+
+  const action = button.dataset.p;
+
+  const endpoints = {
+    audit: "/admin/audit",
+    denied: "/admin/audit?result=denied",
+    permissions: "/admin/audit?kind=permissions",
+    flagged: "/admin/flagged",
+    verify: "/admin/audit/verify"
+  };
+
+  const endpoint = endpoints[action];
+
+  if (!endpoint) return;
+
+  try {
+    $("adminOut").textContent = "Loading...";
+
+    const result = await api(
+      endpoint,
+      action === "verify" ? options("POST") : {}
+    );
+
+    $("adminOut").textContent =
+      typeof result === "string"
+        ? result
+        : JSON.stringify(result, null, 2);
+
+  } catch (e) {
+    $("adminOut").textContent =
+      e.message || "Admin request failed";
+  }
+});
+
+/* START */
+
+checkLogin();
+
+</script>
 
 </body>
 </html>
