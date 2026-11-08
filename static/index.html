@@ -6,16 +6,15 @@
 <title>TrustVault - Secure Document Management</title>
 
 <style>
-:root {
-  --primary: #635bdb;
-  --primary-dark: #4941b5;
-  --secondary: #8b5cf6;
-  --bg: #f4f5fb;
-  --surface: #ffffff;
-  --text: #20243a;
-  --muted: #777d94;
-  --border: #e7e8f0;
-  --danger: #dc3545;
+  :root {
+  --primary: #7540A8;
+  --dark: #352044;
+  --purple: #9064BD;
+  --lavender: #F1EAF8;
+  --white: #FFFFFF;
+  --gold: #D6B46A;
+  --text: #352044;
+  --border: #E5D9F0;
 }
 
 * {
@@ -30,243 +29,166 @@ body {
   margin: 0;
   min-height: 100vh;
   font-family: "Segoe UI", Arial, sans-serif;
-  background: var(--bg);
   color: var(--text);
-}
-
-input, button {
-  font: inherit;
-  border-radius: 9px;
-}
-
-input {
-  padding: 12px 14px;
-  border: 1px solid var(--border);
-  background: #fff;
-  color: var(--text);
-  outline: none;
-}
-
-input:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px #635bdb20;
-}
-
-button {
-  padding: 10px 17px;
-  border: none;
-  background: var(--primary);
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
-  transition: .2s;
-}
-
-button:hover {
-  background: var(--primary-dark);
-  transform: translateY(-1px);
+  background: #F8F5FC;
 }
 
 /* LOGIN PAGE */
-
 #loginBox {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 25px;
-  background:
-    radial-gradient(circle at top left, #8b5cf640, transparent 40%),
-    linear-gradient(135deg, #171a35, #29245a 60%, #42358b);
+  padding: 30px 18px;
+  text-align: center;
+  background: linear-gradient(135deg, #352044, #7540A8, #B69ACF);
 }
 
-#loginBox::before {
-  content: "🔐";
-  font-size: 43px;
+#loginBox:before {
+  content: "♙";
   display: grid;
   place-items: center;
-  width: 85px;
-  height: 85px;
-  background: #ffffff20;
-  border: 1px solid #ffffff35;
-  border-radius: 25px;
+  width: 82px;
+  height: 82px;
   margin-bottom: 20px;
+  border-radius: 25px;
+  color: white;
+  font-size: 40px;
+  background: var(--gold);
 }
 
-#loginBox::after {
+#loginBox:after {
   content: "TRUSTVAULT";
   color: white;
-  font-size: 29px;
+  font-size: 25px;
   font-weight: 800;
   letter-spacing: 3px;
-  order: -1;
-  margin-bottom: 28px;
+  margin-bottom: 15px;
 }
 
 #loginBox input {
-  width: min(100%, 370px);
-  padding: 15px;
-  margin: 8px 0;
-  background: #ffffff;
+  width: min(100%, 390px);
+  margin: 9px auto;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: white;
+  font-size: 15px;
+  outline: none;
 }
 
-#loginBox button {
-  width: min(100%, 370px);
+#loginBox input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px #D6B46A35;
+}
+
+/* BUTTONS */
+button {
+  padding: 11px 18px;
+  border: 0;
+  border-radius: 9px;
+  background: var(--primary);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+button:hover {
+  background: var(--dark);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 14px #35204430;
+}
+
+#loginBtn {
+  width: min(100%, 390px);
+  margin-top: 12px;
   padding: 14px;
-  margin-top: 15px;
-  background: linear-gradient(100deg, #635bdb, #9b5cf6);
+  background: var(--gold);
+  color: var(--dark);
   font-size: 16px;
 }
 
-#loginBox button:hover {
-  background: linear-gradient(100deg, #4941b5, #7843d4);
+#loginBtn:hover {
+  background: #E5CA91;
 }
 
-#loginBox #msg {
-  color: #ffd18c;
-}
-
-/* STATUS MESSAGE */
-
-#msg {
-  min-height: 1.2em;
-  color: #b45309;
-  text-align: center;
-  font-size: 14px;
-  margin: 8px;
-}
-
-/* DASHBOARD */
-
+/* DASHBOARD HEADER */
 #appBox {
   min-height: 100vh;
 }
 
-/* HEADER */
-
 #appBox > p:first-child {
   margin: 0;
-  min-height: 75px;
-  padding: 15px 4%;
+  padding: 20px 4%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 15px;
-  background: linear-gradient(105deg, #25234e, #5145a9);
   color: white;
-  box-shadow: 0 4px 18px #20204a20;
-}
-
-#appBox > p:first-child::before {
-  content: "🔐 TRUSTVAULT";
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  margin-right: auto;
+  background: linear-gradient(100deg, #352044, #7540A8);
+  box-shadow: 0 4px 16px #35204425;
 }
 
 #who {
   color: white;
-  font-weight: 500;
 }
 
 #logoutBtn {
-  background: #ffffff;
-  color: #5145a9;
-  padding: 9px 20px;
+  background: var(--gold);
+  color: var(--dark);
 }
 
-#logoutBtn:hover {
-  background: #eeeaff;
-}
-
-/* MAIN CONTENT */
-
-#uploadBox,
-#appBox > h2,
-#appBox > #q,
-#appBox > #cat,
-#appBox > #own,
-#appBox > #since,
-#searchBtn,
-#docs,
-#grants,
-#adminBox {
-  width: min(1200px, calc(100% - 40px));
-  margin-left: auto;
-  margin-right: auto;
-}
-
+/* DASHBOARD SECTIONS */
 #uploadBox,
 #docs,
 #grants,
 #adminBox {
-  margin-top: 22px;
-  padding: 24px;
-  background: var(--surface);
+  width: min(1120px, calc(100% - 32px));
+  margin: 22px auto;
+  padding: 22px;
   border: 1px solid var(--border);
   border-radius: 15px;
-  box-shadow: 0 5px 22px #29245a0a;
+  background: white;
+  box-shadow: 0 5px 20px #3520440c;
+}
+
+#appBox > h2 {
+  width: min(1120px, calc(100% - 32px));
+  margin: 28px auto 16px;
+  color: var(--dark);
+  font-size: 23px;
 }
 
 #uploadBox h2,
-#appBox > h2,
 #adminBox h2 {
-  color: #35305e;
-  margin-top: 0;
-  margin-bottom: 18px;
-  font-size: 21px;
-  font-weight: 700;
+  color: var(--primary);
 }
 
-#uploadBox {
-  border-top: 4px solid var(--primary);
-}
-
-#file {
-  max-width: 100%;
-  padding: 9px;
-}
-
-#upcat {
-  width: 240px;
-  margin-left: 10px;
-}
-
-#upBtn {
-  margin-left: 10px;
-}
-
-/* DOCUMENT SECTION */
-
-#appBox > h2 {
-  margin-top: 30px;
-  margin-bottom: 18px;
-}
-
+/* SEARCH INPUTS */
 #appBox > #q,
 #appBox > #cat,
 #appBox > #own,
 #appBox > #since {
-  width: auto;
-  margin-top: 0;
-  margin-bottom: 12px;
-  margin-right: 8px;
+  padding: 11px;
+  margin: 5px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: white;
+  color: var(--dark);
 }
 
 #appBox > #q {
-  margin-left: max(20px, calc((100% - 1200px)/2));
+  margin-left: max(16px, calc((100% - 1120px)/2));
 }
 
 #searchBtn {
-  width: auto;
-  margin-left: max(20px, calc((100% - 1200px)/2));
-  margin-right: 0;
+  background: var(--gold);
+  color: var(--dark);
 }
 
 /* TABLE DESIGN */
-
 .scroll {
   overflow-x: auto;
 }
@@ -275,136 +197,72 @@ table {
   width: 100%;
   border-collapse: collapse;
   background: white;
-  min-width: 650px;
 }
 
 th {
-  background: #eeedff;
-  color: #443b9b;
+  background: var(--lavender);
+  color: var(--dark);
   font-weight: 700;
 }
 
 th, td {
-  padding: 13px 14px;
-  border-bottom: 1px solid var(--border);
+  padding: 13px;
+  border: 1px solid var(--border);
   text-align: left;
   font-size: 14px;
 }
 
 tr:hover td {
-  background: #f8f7ff;
+  background: #FAF7FD;
 }
 
-td button {
-  margin: 3px;
-  padding: 7px 11px;
-  font-size: 12px;
-}
-
-td button:last-child {
-  background: var(--danger);
-}
-
-td a {
-  display: inline-block;
-  margin: 5px;
+a {
   color: var(--primary);
-  font-weight: 700;
-  text-decoration: none;
+  font-weight: 600;
 }
 
-td a:hover {
-  text-decoration: underline;
+/* MESSAGE */
+#msg {
+  color: #A16207;
+  min-height: 1.2em;
+  padding: 8px 15px;
 }
 
-/* ACCESS SECTION */
-
-#grants h3 {
-  color: #443b9b;
-  margin-top: 0;
-}
-
-#grants p {
-  padding: 10px;
-  background: #f7f6ff;
-  border-radius: 8px;
-}
-
-/* ADMIN PANEL */
-
-#adminBox {
-  border-top: 4px solid #8b5cf6;
-  margin-bottom: 35px;
-}
-
-#adminBox button {
-  margin: 5px;
-  background: #5145a9;
-}
-
-#adminBox button:hover {
-  background: #373078;
-}
-
-#adminOut {
-  margin-top: 20px;
-}
-
-/* RESPONSIVE DESIGN */
-
-@media(max-width: 700px) {
+/* MOBILE RESPONSIVE */
+@media (max-width: 650px) {
   #appBox > p:first-child {
+    justify-content: space-between;
     flex-wrap: wrap;
-    padding: 15px;
-  }
-
-  #appBox > p:first-child::before {
-    width: 100%;
-    font-size: 19px;
   }
 
   #uploadBox,
   #docs,
   #grants,
   #adminBox {
-    width: calc(100% - 24px);
-    padding: 15px;
+    padding: 14px;
   }
 
   #appBox > #q,
   #appBox > #cat,
   #appBox > #own,
-  #appBox > #since {
+  #appBox > #since,
+  #searchBtn {
     display: block;
-    width: calc(100% - 24px);
+    width: calc(100% - 32px);
     margin: 9px auto;
   }
 
   #upcat {
     width: 100%;
-    margin: 10px 0;
+    margin-top: 8px;
   }
 
   #upBtn {
     width: 100%;
-    margin: 5px 0;
-  }
-
-  #searchBtn {
-    display: block;
-    width: calc(100% - 24px);
-    margin: 10px auto;
-  }
-
-  #file {
-    width: 100%;
-  }
-
-  #adminBox button {
-    width: 100%;
-    margin: 5px 0;
+    margin-top: 8px;
   }
 }
+
 </style>
 </head>
 
