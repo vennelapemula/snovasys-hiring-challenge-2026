@@ -49,8 +49,7 @@ async function start() {
   $("appBox").hidden = false;
   $("who").textContent = me.username + " (" + me.role + ")";
   $("adminBox").hidden = me.role !== "admin";
-  const ub = $("uploadBox");
-  if (ub) ub.hidden = me.role === "viewer";
+  msg(r.ok ? "uploaded" : (r.data && r.data.error) || "upload failed");
   $("grants").replaceChildren();
   loadDocs();
 }
